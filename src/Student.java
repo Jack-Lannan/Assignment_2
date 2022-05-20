@@ -8,7 +8,7 @@ public class Student {
     private String familyName;
     private String givenName;
     protected String degree;
-    private Result[] results = new Result[24];
+    private Result results[] = new Result[24];
 
     public void setStudentID(String studentID) {
         this.studentID = studentID;
@@ -74,6 +74,26 @@ public class Student {
     }
     public Result[] getResults() {
         return results;
+    }
+
+    public int[] getResult(String degree){
+        String split[] = degree.split(",");
+        int finList[] = new int[0];
+        LinkedList<Integer> thing = new LinkedList<>();
+        for (int i = 0; i< results.length;i++){
+            Collections.sort(thing);
+            if (results[i] != null){
+                if (results[i].getCode().contains(degree)){
+                    if (thing.size() == Integer.parseInt(split[1]))
+                        thing.remove(0);
+                    thing.add(results[i].getMark());
+                }
+            }
+        }
+        for (int i = 0; i < thing.size();i++){
+            finList[i] = thing.get(i);
+        }
+        return finList;
     }
 
     public String writeResults(){

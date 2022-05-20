@@ -1,7 +1,8 @@
 import java.util.Arrays;
+import java.util.LinkedList;
 
 public class MedStudent extends Student{
-    String prizes[] = new String[10];
+    LinkedList<String> prizes = new LinkedList<>();
     MedStudent(String scanner){
         String thing[] = scanner.split(",");
         switch (thing.length){
@@ -13,25 +14,23 @@ public class MedStudent extends Student{
                 this.setFamilyName(thing[2]);
                 this.setGivenName(thing[3]);
                 this.degree = "Medicine";
-                this.prizes[0] = thing[4];
+                this.prizes.add(thing[4]);
                 break;
         }
     }
 
     public void addPrize(String prize){
-        this.prizes[prizes.length] = prize;
+        this.prizes.add(prize);
     }
 
-    public String[] getPrizes() {
+    public LinkedList<String> getPrizes() {
         return prizes;
     }
 
     public String writeRecord(){
         String concatenator = "";
-        for (int i = 0; i < prizes.length; i++) {
-            if (prizes[i] != null){
-                concatenator += prizes[i] + '\n';
-            }
+        for (int i = 0; i < prizes.size(); i++) {
+                concatenator += prizes.get(i) + '\n';
         }
         return "Academic record for " + this.getGivenName() + " " + this.getFamilyName() + "(" + this.getStudentID() + ")" + '\n'
                 + "Degree: " + this.degree + '\n'

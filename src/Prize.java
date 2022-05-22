@@ -1,7 +1,7 @@
 import java.util.Arrays;
 import java.util.LinkedList;
 
-public class Prize {
+public class Prize implements Constants{
     private String name;
     private String template;
     private int topicsRequired;
@@ -29,7 +29,7 @@ public class Prize {
                 }
             }
         }
-        System.out.println(medStudent.writeRecord());
-        medStudent.addPrize(name);
+        if (medStudent.prizes.size() < NUMBER_OF_PRIZES)
+                medStudent.addPrize(name);
     }
 }

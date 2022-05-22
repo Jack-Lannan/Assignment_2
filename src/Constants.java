@@ -1,6 +1,6 @@
 public interface Constants {
-    int NUMBER_OF_PRIZES = 0;
-    int NUMBER_OF_STUDENTS = 0;
-    int NUMBER_OF_TOPICS = 0;
+     final int NUMBER_OF_PRIZES = 10;
+     final int NUMBER_OF_STUDENTS = 1000;
+     final int NUMBER_OF_TOPICS = 24;
 
 }

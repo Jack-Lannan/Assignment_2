@@ -1,8 +1,8 @@
 import java.util.*;
 
-public class StudentDatabase {
+public class StudentDatabase implements Constants{
     private List<Student> db = new LinkedList<>();
-    private int studentCount = 0;
+    private int studentCount = NUMBER_OF_STUDENTS;
 
     StudentDatabase(){
     }

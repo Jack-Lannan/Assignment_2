@@ -3,12 +3,12 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.*;
 
-public class Student {
+public class Student implements Constants{
     private String studentID;
     private String familyName;
     private String givenName;
     protected String degree;
-    private Result results[] = new Result[24];
+    private Result results[] = new Result[NUMBER_OF_TOPICS];
 
     public void setStudentID(String studentID) {
         this.studentID = studentID;
@@ -22,7 +22,7 @@ public class Student {
         this.givenName = givenName;
     }
 
-    private int topicCount;
+    private int topicCount = 0;
     private Map<String,Student> studentMap = new TreeMap<>();
 
     Student(String scanner){
@@ -68,6 +68,7 @@ public class Student {
         for (int i = 0; i < 24; i++) {
             if (results[i] == null) {
                 results[i] = result;
+                topicCount++;
                 return;
             }
         }
@@ -108,10 +109,6 @@ public class Student {
 
     public int getTopicCount() {
         return topicCount;
-    }
-
-    public String writeHeader(){
-        return null;
     }
 
     public String writeRecord(){

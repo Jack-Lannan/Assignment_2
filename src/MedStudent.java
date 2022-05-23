@@ -1,36 +1,43 @@
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class MedStudent extends Student{
-    String prizes[] = new String[10];
+    List<String> prizes = new ArrayList<>();
+    int prizeCount;
     MedStudent(String scanner){
         String thing[] = scanner.split(",");
         switch (thing.length){
             case 1:
-                this.setFamilyName(thing[2]);
+                this.setFamilyName(thing[1]);
                 break;
             case 5:
                 this.setStudentID(thing[1]);
                 this.setFamilyName(thing[2]);
                 this.setGivenName(thing[3]);
                 this.degree = "Medicine";
-                this.prizes[0] = thing[4];
+                this.prizes.add(thing[4]);
+                prizeCount=1;
                 break;
         }
     }
 
     public void addPrize(String prize){
-        this.prizes[prizes.length] = prize;
+        if(prizeCount<10) {
+            this.prizes.add(prize);
+            prizeCount++;
+        }
     }
 
-    public String[] getPrizes() {
-        return prizes;
+    public List<String> getPrizes() {
+        return this.prizes;
     }
 
     public String writeRecord(){
         String concatenator = "";
-        for (int i = 0; i < prizes.length; i++) {
-            if (prizes[i] != null){
-                concatenator += prizes[i] + '\n';
+        for (int i = 0; i < prizes.size(); i++) {
+            if (prizes.get(i) != null){
+                concatenator += prizes.get(i) + '\n';
             }
         }
         return "Academic record for " + this.getGivenName() + " " + this.getFamilyName() + "(" + this.getStudentID() + ")" + '\n'

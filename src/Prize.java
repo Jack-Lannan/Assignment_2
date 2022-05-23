@@ -19,17 +19,21 @@ public class Prize implements Constants{
 
         for (int i = 0;i<meds.size(); i++){
             if (meds.get(i).getResults().length >= topicsRequired){
-                if(meds.get(i).getResult(template + ',' + topicsRequired) != null){
+                if(meds.get(i).getResult(template + ',' + topicsRequired) != null ){
+                    if (Arrays.stream(meds.get(i).getResult(template + ',' + topicsRequired)).sum() != 0){
                     if (medStudent == null) {
                         medStudent = meds.get(i);
                     }
-                    if (Arrays.stream(meds.get(i).getResult(template + ',' + topicsRequired)).sum()/topicsRequired > Arrays.stream(medStudent.getResult(template + ',' + topicsRequired)).sum()/3){
+                    int total = Arrays.stream(meds.get(i).getResult(template + ',' + topicsRequired)).sum();
+                    if (total/topicsRequired > Arrays.stream(medStudent.getResult(template + ',' + topicsRequired)).sum()/3 && total >= 0){
                         medStudent = meds.get(i);
                     }
-                }
+                    }
+                    }
             }
         }
-        if (medStudent.prizes.size() < NUMBER_OF_PRIZES)
+        if (medStudent != null)
+            if (medStudent.prizes.size() < NUMBER_OF_PRIZES )
                 medStudent.addPrize(name);
     }
 }

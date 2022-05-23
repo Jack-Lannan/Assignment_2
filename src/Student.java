@@ -79,20 +79,25 @@ public class Student implements Constants{
 
     public int[] getResult(String degree){
         String split[] = degree.split(",");
-        int finList[] = new int[0];
+        int finList[] = new int[Integer.parseInt(split[1])];
+        for (int i = 0; i<finList.length;i++){
+            finList[i] = 0;
+        }
         LinkedList<Integer> thing = new LinkedList<>();
         for (int i = 0; i< results.length;i++){
             Collections.sort(thing);
             if (results[i] != null){
-                if (results[i].getCode().contains(degree)){
+                if (results[i].getCode().contains(split[0])){
                     if (thing.size() == Integer.parseInt(split[1]))
                         thing.remove(0);
                     thing.add(results[i].getMark());
                 }
             }
         }
-        for (int i = 0; i < thing.size();i++){
+        int i = 0;
+        while(i< thing.size()){
             finList[i] = thing.get(i);
+            i++;
         }
         return finList;
     }

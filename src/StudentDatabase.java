@@ -52,7 +52,6 @@ public class StudentDatabase implements Constants{
         LinkedList<MedStudent> medStudents = new LinkedList<>();
         for (Student student:db) {
             if (student.degree == "Medicine") {
-                System.out.println(student.getStudentID());
                 medStudents.add((MedStudent)student);
             }
         }

@@ -1,8 +1,11 @@
 public class Result
 {
 
+    // the topic
     private String code;
+    // Alphabetic representation of the mark.
     private String grade;
+    // Numeric representation of the grade(mark)
     private int mark;
 
     Result(String scanner){

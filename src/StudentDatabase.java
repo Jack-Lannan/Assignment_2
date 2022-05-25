@@ -1,9 +1,8 @@
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
-public class StudentDatabase {
+public class StudentDatabase implements Constants{
     private List<Student> db = new LinkedList<>();
-    private int studentCount = 0;
+    private int studentCount = NUMBER_OF_STUDENTS;
 
     StudentDatabase(){
     }
@@ -45,6 +44,18 @@ public class StudentDatabase {
     }
 
     public void awardPrize(String one, String two, int three){
+        Prize prize = new Prize(one+','+two + ','+three);
+        prize.awardPrize(this);
+    }
+
+    public LinkedList<MedStudent> getMeds(){
+        LinkedList<MedStudent> medStudents = new LinkedList<>();
+        for (Student student:db) {
+            if (student.degree == "Medicine") {
+                medStudents.add((MedStudent)student);
+            }
+        }
+        return medStudents;
     }
 
     public void printRecords(){
@@ -54,6 +65,8 @@ public class StudentDatabase {
     }
 
     public void clearRecords(){
+        db.clear();
+        this.studentCount = 0;
     }
 
 }

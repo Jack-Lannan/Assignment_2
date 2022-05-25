@@ -11,11 +11,17 @@ import static org.junit.jupiter.api.Assertions.*;
 class MedStudentTest {
 
     static MedStudent student;
+    static MedStudent student1;
     @BeforeAll
     static void before(){
         student = new MedStudent("test,98575,Test,First,TheWorld");
+        student1 = new MedStudent("test1");
     }
 
+    @Test
+    void MedStudent(){
+        assertEquals("test1",student1.getFamilyName());
+    }
 
     @Test
     void addPrize() {
@@ -28,7 +34,11 @@ class MedStudentTest {
 
     @Test
     void getPrizes() {
-
+        student.addPrize("Tunes");
+        List<String> list = new ArrayList<>();
+        list.add("TheWorld");
+        list.add("Tunes");
+        assertEquals(list, student.getPrizes());
     }
 
     @Test

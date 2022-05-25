@@ -24,17 +24,11 @@ class StudentTest {
     void getFamilyName() {
     }
 
-    @Test
-    void testGetFamilyName() {
-    }
 
     @Test
     void getGivenName() {
     }
 
-    @Test
-    void testGetGivenName() {
-    }
 
     @Test
     void addResult() {

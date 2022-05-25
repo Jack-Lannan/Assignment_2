@@ -9,7 +9,7 @@ public class MedStudent extends Student{
         String thing[] = scanner.split(",");
         switch (thing.length){
             case 1:
-                this.setFamilyName(thing[1]);
+                this.setFamilyName(thing[0]);
                 break;
             case 5:
                 this.setStudentID(thing[1]);
@@ -34,15 +34,15 @@ public class MedStudent extends Student{
     }
 
     public String writeRecord(){
-        String concatenator = "";
+        String concatenate = "";
         for (int i = 0; i < prizes.size(); i++) {
             if (prizes.get(i) != null){
-                concatenator += prizes.get(i) + '\n';
+                concatenate += prizes.get(i) + '\n';
             }
         }
         return "Academic record for " + this.getGivenName() + " " + this.getFamilyName() + "(" + this.getStudentID() + ")" + '\n'
                 + "Degree: " + this.degree + '\n'
-                + "Prize: " + concatenator
+                + "Prize: " + concatenate
                 + this.writeResults();
     }
 }

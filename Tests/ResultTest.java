@@ -15,7 +15,7 @@ class ResultTest {
     }
 
     @Test
-    @DisplayName("write not working?")
+    @DisplayName("write")
     void write() {
         assertAll(
                 () -> assertEquals("c0de HD\n",r.write()),

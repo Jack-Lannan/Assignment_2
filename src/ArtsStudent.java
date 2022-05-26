@@ -4,11 +4,11 @@ public class ArtsStudent extends Student{
     private String minor;
 
     ArtsStudent(String scanner){
-        ArtsStudent student = new ArtsStudent();
-        String thing[] = scanner.split(",");
+        String[] thing = scanner.split(",");
         switch (thing.length){
             case 1:
-                this.setFamilyName(thing[2]);
+                // ------ URGENT ------ double check here not sure. Had it checking thing[2].
+                this.setFamilyName(thing[0]);
                 break;
             case 6:
                 this.setStudentID(thing[1]);

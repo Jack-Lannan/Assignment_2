@@ -14,6 +14,7 @@ class StudentTest {
     @Test
     void setFamilyName() {
         s.setFamilyName("Jones");
+        s.setFamilyName("Jones");
     }
 
     @Test

@@ -1,61 +1,50 @@
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class StudentTest {
 
-    static Student student;
-
-    @BeforeAll
-    static void before() {student = new Student("test,98575,Test,First,TheWorld");}
-
+    Student s = new Student();
 
     @Test
     void setStudentID() {
-        student.setStudentID("95535");
-        assertEquals("95535",student.getStudentID());
+        s.setStudentID("newID.D");
     }
 
     @Test
     void setFamilyName() {
-        student.setFamilyName("Jeffries");
-        assertEquals("Jeffries",student.getFamilyName());
+        s.setFamilyName("Jones");
     }
 
     @Test
     void setGivenName() {
-        student.setGivenName("Jack");
-        assertEquals("Jack",student.getGivenName());
+        s.setGivenName("Mary");
     }
 
     @Test
     void getStudentID() {
-        assertEquals("98575",student.getStudentID());
+        assertEquals("newID.D",s.getStudentID());
     }
 
     @Test
     void getFamilyName() {
-        assertEquals("Test",student.getFamilyName());
+        assertEquals("jones", s.getFamilyName());
     }
 
 
     @Test
     void getGivenName() {
-        assertEquals("First",student.getGivenName());
+        assertEquals("Mary",s.getGivenName());
     }
 
-    //WIP
+
     @Test
-    @BeforeAll
     void addResult() {
-        student.addResult("COMP1000,HD,100");
-        assertEquals("testing", student.getResult("TheWorld"));
+//        s.addResult();
     }
-    //WIP
+
     @Test
     void getResults() {
-        assertEquals("testing", student.getResult("TheWorld"));
     }
 
     @Test
@@ -64,6 +53,7 @@ class StudentTest {
 
     @Test
     void getTopicCount() {
+        assertEquals(0,s.getTopicCount());
     }
 
     @Test

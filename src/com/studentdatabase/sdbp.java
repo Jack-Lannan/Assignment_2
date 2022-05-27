@@ -1,3 +1,5 @@
+package com.studentdatabase;
+
 import javax.swing.*;
 
 

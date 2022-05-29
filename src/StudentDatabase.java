@@ -64,6 +64,15 @@ public class StudentDatabase implements Constants{
         }
     }
 
+    public String printcharRecords(){
+        String thing = "";
+        for (int i = 0; i< db.size();i++){
+            thing += db.get(i).writeRecord();
+            thing +="\n";
+        }
+        return thing;
+    }
+
     public void clearRecords(){
         db.clear();
         this.studentCount = 0;

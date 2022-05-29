@@ -1,3 +1,5 @@
+import jdk.jfr.Label;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -56,6 +58,7 @@ public class gui {
     }
 
     public gui() {
+//      Add Student Button
         addStudentButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.out.println(studentNumberText.getText());
@@ -63,6 +66,21 @@ public class gui {
                 sd.printRecords();
             }
         });
+//        Print All Records Button
+        printAllRecordsButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                sd.printRecords();
+            }
+        });
+//      Clear Everything
+        clearAllRecordsButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                sd.clearRecords();
+                System.out.println("All data has been cleared from the Database.");
+            }
+        });
+//
+
         /*findStudentButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 Student test = new Student();
@@ -73,6 +91,7 @@ public class gui {
                 familyNameText.setText(foundStudent.getFamilyName());
             }
         });*/
+
     }
 
 }

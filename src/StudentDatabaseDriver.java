@@ -1,6 +1,7 @@
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Scanner;
 
 public class StudentDatabaseDriver {
@@ -36,7 +37,16 @@ public class StudentDatabaseDriver {
                         prize.awardPrize(studentDatabase);
                 }
             }
+
             studentDatabase.printRecords();
+
+            try{
+                Files.writeString(Paths.get("data/databaseOutput.txt"),studentDatabase.printcharRecords());
+            } catch (IOException e) {
+                System.out.println("An error occurred.");
+                e.printStackTrace();
+            }
+
         }catch (FileNotFoundException ex){
             System.out.println(fileName + " not found!");
         }

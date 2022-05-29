@@ -2,6 +2,7 @@ S,9800123,Smith,John Paul
 M,9821012,Jones,Mary,Chemistry Prize 1998
 M,2,Bill,Burr,Explosive surPrize 2002
 A,9987654,Howard,John,Politics,Economics
+A,9987654,Big,Jimmny,Politics,Economics
 R,9821012,BIOL1000,HD,89
 R,9821012,CHEM1001,HD,92
 R,2,HIST0010,HD,95

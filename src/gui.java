@@ -58,16 +58,8 @@ public class gui {
     public gui() {
         addStudentButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
-                Student studentTest = new Student();
-                studentTest.setStudentID(studentNumberText.getText());
-                studentTest.setFamilyName(familyNameText.getText());
-                studentTest.setGivenName(givenNameText.getText());
-                String degreetest = (degreeComboBox.getSelectedItem().toString());
-                char degree = degreetest.charAt(0);
-
-                String datatest = ("A" + ',' + studentNumberText.getText() + ',' + familyNameText.getText() + ',' + givenNameText.getText());
-                sd.addStudent(datatest);
+                System.out.println(studentNumberText.getText());
+                sd.addStudent(Character.toString(degreeComboBox.getSelectedItem().toString().charAt(0)) + ',' + studentNumberText.getText() + ',' + familyNameText.getText() + ',' + givenNameText.getText());
                 sd.printRecords();
             }
         });

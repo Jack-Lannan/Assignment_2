@@ -21,7 +21,6 @@ public class StudentDatabaseDriver {
                     case 'M':
                     case 'A':
                         studentDatabase.addStudent(nextLine);
-                        String student[] = nextLine.split(",");
                         break;
                     case 'R':
                         //need the database to be working for this stage, access the student by their id

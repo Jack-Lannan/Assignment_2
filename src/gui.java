@@ -62,6 +62,7 @@ public class gui {
         addStudentButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.out.println(studentNumberText.getText());
+                System.out.println(Character.toString(degreeComboBox.getSelectedItem().toString().charAt(0)) + ',' + studentNumberText.getText() + ',' + familyNameText.getText() + ',' + givenNameText.getText());
                 sd.addStudent(Character.toString(degreeComboBox.getSelectedItem().toString().charAt(0)) + ',' + studentNumberText.getText() + ',' + familyNameText.getText() + ',' + givenNameText.getText());
                 sd.printRecords();
             }
@@ -69,7 +70,16 @@ public class gui {
 //        Print All Records Button
         printAllRecordsButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                sd.printRecords();
+                if (sd.NUMBER_OF_STUDENTS == 0) {
+                    System.out.println("There is no available data.");
+
+                }
+
+                else {
+
+                    sd.printRecords();
+
+                }
             }
         });
 //      Clear Everything

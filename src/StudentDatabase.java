@@ -1,6 +1,7 @@
 import java.util.*;
 
 public class StudentDatabase implements Constants{
+
     private List<Student> db = new LinkedList<>();
     private int studentCount = NUMBER_OF_STUDENTS;
 
@@ -8,6 +9,11 @@ public class StudentDatabase implements Constants{
     }
 
     StudentDatabase(Integer value){
+    }
+
+    // getter for the DB
+    public List<Student> getDb() {
+        return db;
     }
 
     // Add the student from input. Characterises them into Science, Medicine or Art.
@@ -82,5 +88,7 @@ public class StudentDatabase implements Constants{
         db.clear();
         this.studentCount = 0;
     }
+
+
 
 }

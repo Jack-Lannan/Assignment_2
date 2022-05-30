@@ -1,7 +1,6 @@
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Scanner;
 
 public class StudentDatabaseDriver {
@@ -21,6 +20,7 @@ public class StudentDatabaseDriver {
                     case 'M':
                     case 'A':
                         studentDatabase.addStudent(nextLine);
+                        String student[] = nextLine.split(",");
                         break;
                     case 'R':
                         //need the database to be working for this stage, access the student by their id
@@ -36,16 +36,22 @@ public class StudentDatabaseDriver {
                         prize.awardPrize(studentDatabase);
                 }
             }
-
             studentDatabase.printRecords();
-
             try{
-                Files.writeString(Paths.get("data/databaseOutput.txt"),studentDatabase.printcharRecords());
+                File myObj = new File("data/output/databaseOutput.txt");
+                if (myObj.createNewFile()) {
+                    System.out.println("File created: " + myObj.getName());
+                } else {
+                    System.out.println("File already exists.");
+                }
+                FileWriter mywriter = new FileWriter("data/output/filename.txt");
+                Files.writeString(Path.of("output/filename.txt"),studentDatabase.printcharRecords());
+                mywriter.close();
+                System.out.println(Files.readString(Path.of("data/output/filename.txt")));
             } catch (IOException e) {
                 System.out.println("An error occurred.");
                 e.printStackTrace();
             }
-
         }catch (FileNotFoundException ex){
             System.out.println(fileName + " not found!");
         }

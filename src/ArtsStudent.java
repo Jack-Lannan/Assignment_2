@@ -32,7 +32,6 @@ public class ArtsStudent extends Student{
     public ArtsStudent() {
 
     }
-
     public String writeRecord(){
         return "Academic record for " + this.getGivenName() + " " + this.getFamilyName() + "(" + this.getStudentID() + ")" + '\n'
                 + "Degree: " + this.degree + '\n'

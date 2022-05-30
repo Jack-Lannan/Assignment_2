@@ -72,13 +72,9 @@ public class gui {
             public void actionPerformed(ActionEvent e) {
                 if (sd.NUMBER_OF_STUDENTS == 0) {
                     System.out.println("There is no available data.");
-
                 }
-
                 else {
-
                     sd.printRecords();
-
                 }
             }
         });
@@ -89,19 +85,49 @@ public class gui {
                 System.out.println("All data has been cleared from the Database.");
             }
         });
-//
-
-        /*findStudentButton.addActionListener(new ActionListener() {
+//      Find Student (Need to change the degree combobox?)
+        findStudentButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Student test = new Student();
-                test.setFamilyName("tester");
-                test.setStudentID("12345");
-                Student foundStudent = new StudentDatabase().findStudent(studentNumberText.toString());
-                System.out.println(foundStudent);
-                familyNameText.setText(foundStudent.getFamilyName());
+                Student foundStudent = sd.findStudent(studentNumberText.getText());
+                if (foundStudent != null) {
+                    givenNameText.setText(foundStudent.getGivenName());
+                    familyNameText.setText(foundStudent.getFamilyName());
+                }
+                else {
+                    JOptionPane.showMessageDialog(null, "No Student with this ID in database.");
             }
-        });*/
+        }
 
+    });
+//      Add Topic Result Button
+        addTopicResultButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Student foundStudent = sd.findStudent(studentNumberText.getText());
+                if (studentNumberText.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "No Student ID entered, please enter a Student ID.");
+                }
+                else if (foundStudent == null) {
+                    JOptionPane.showMessageDialog(null, "No Student with this ID exists, check the ID and try again");
+                    }
+                else if (topicCodeText.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "No Topic Code entered, please try again");
+                }
+                else {
+                    String awardedGrade = gradeCombobox.getSelectedItem().toString();
+                    String enteredTopic = topicCodeText.getText();
+                    String awardedMark = markText.getText();
+                    foundStudent.addResult("R" + ',' + foundStudent.getStudentID() + ',' + enteredTopic + ',' + awardedGrade + ',' + awardedMark);
+                }
+            }
+        });
+
+//      Find Topic Button
+        findTopicResultButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Student foundStudent = sd.findStudent(studentNumberText.getText());
+            }
+        });
     }
-
-}
+    }

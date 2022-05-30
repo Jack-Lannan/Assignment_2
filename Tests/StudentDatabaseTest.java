@@ -18,14 +18,19 @@ class StudentDatabaseTest {
 
     @Test
     void addResult() {
+        newStudent.addResult("R,9990199,COMP1001,DN,77");
+        newStudent.addResult("R,9990199,MEDD0119,HD,86");
+        newStudent.addResult("R,9990099,COMP1011,HD,99");
     }
 
     @Test
     void awardPrize() {
+        newStudent.awardPrize();
     }
 
     @Test
     void printRecords() {
+        newStudent.printRecords();
     }
 
     @Test

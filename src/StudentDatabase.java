@@ -3,7 +3,6 @@ import java.util.*;
 public class StudentDatabase implements Constants{
 
     private List<Student> db = new LinkedList<>();
-    private int studentCount = NUMBER_OF_STUDENTS;
 
     StudentDatabase(){
     }
@@ -18,19 +17,20 @@ public class StudentDatabase implements Constants{
 
     // Add the student from input. Characterises them into Science, Medicine or Art.
     public void addStudent(String student){
-        switch (student.charAt(0)){
-            case 'S':
-                db.add(new Student(student));
-                studentCount++;
-                break;
-            case 'M':
-                db.add(new MedStudent(student));
-                studentCount++;
-                break;
-            case'A':
-                db.add(new ArtsStudent(student));
-                studentCount++;
-                break;
+        if(db.size()<NUMBER_OF_STUDENTS){
+            switch (student.charAt(0)){
+                case 'S':
+                    db.add(new Student(student));
+                    break;
+                case 'M':
+                    db.add(new MedStudent(student));
+                    break;
+                case'A':
+                    db.add(new ArtsStudent(student));
+                    break;
+            }
+        } else {
+            System.out.println("Student capacity reached.");
         }
     }
 
@@ -43,6 +43,7 @@ public class StudentDatabase implements Constants{
         }
         return null;
     }
+
     public void addResult(String results){
         String resultSection[]  = results.split(",");
         for (int i = 0; i< db.size(); i++){
@@ -86,7 +87,6 @@ public class StudentDatabase implements Constants{
 
     public void clearRecords(){
         db.clear();
-        this.studentCount = 0;
     }
 
 

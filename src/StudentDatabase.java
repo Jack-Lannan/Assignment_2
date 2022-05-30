@@ -10,6 +10,7 @@ public class StudentDatabase implements Constants{
     StudentDatabase(Integer value){
     }
 
+    // Add the student from input. Characterises them into Science, Medicine or Art.
     public void addStudent(String student){
         switch (student.charAt(0)){
             case 'S':
@@ -26,6 +27,8 @@ public class StudentDatabase implements Constants{
                 break;
         }
     }
+
+    // Finds student using StudentID.
     public Student findStudent(String student){
         for (int i = 0; i < db.size(); i++){
                 if ( db.get(i).getStudentID() != null && db.get(i).getStudentID().equals(student)){
@@ -48,6 +51,7 @@ public class StudentDatabase implements Constants{
         prize.awardPrize(this);
     }
 
+    // Returns a list of students studying Medicine.
     public LinkedList<MedStudent> getMeds(){
         LinkedList<MedStudent> medStudents = new LinkedList<>();
         for (Student student:db) {
@@ -58,6 +62,7 @@ public class StudentDatabase implements Constants{
         return medStudents;
     }
 
+    // Prints every student's record.
     public void printRecords(){
         for (int i = 0; i< db.size();i++){
             System.out.println(db.get(i).writeRecord());

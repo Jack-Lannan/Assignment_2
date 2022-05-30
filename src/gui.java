@@ -70,7 +70,7 @@ public class gui {
 //        Print All Records Button (Add a seperate popout panel?)
         printAllRecordsButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if (sd.NUMBER_OF_STUDENTS == 0) {
+                if (sd.getDb().size() == 0) {
                     System.out.println("There is no available data.");
                 }
                 else {

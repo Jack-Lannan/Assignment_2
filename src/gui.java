@@ -67,7 +67,7 @@ public class gui {
                 sd.printRecords();
             }
         });
-//        Print All Records Button
+//        Print All Records Button (Add a seperate popout panel?)
         printAllRecordsButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (sd.NUMBER_OF_STUDENTS == 0) {
@@ -108,10 +108,13 @@ public class gui {
                 JOptionPane.showMessageDialog(null, "No Student ID entered, please enter a Student ID.");
                 }
                 else if (foundStudent == null) {
-                    JOptionPane.showMessageDialog(null, "No Student with this ID exists, check the ID and try again");
+                    JOptionPane.showMessageDialog(null, "No Student with this ID exists, check the ID and try again.");
                     }
+                else if (gradeCombobox.getSelectedIndex() == 0) {
+                    JOptionPane.showMessageDialog(null, "No Grade has been selected, please select a grade.");
+                }
                 else if (topicCodeText.getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "No Topic Code entered, please try again");
+                    JOptionPane.showMessageDialog(null, "No Topic Code entered, please select a topic code.");
                 }
                 else {
                     String awardedGrade = gradeCombobox.getSelectedItem().toString();
@@ -127,7 +130,15 @@ public class gui {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Student foundStudent = sd.findStudent(studentNumberText.getText());
-            }
+                //if (topicCodeText.getText().contains(foundStudent.writeResults())) {
+                 //   gradeCombobox.
+                String results = foundStudent.writeResults();
+                System.out.println(results);
+                //}
+                }
+
+
+
         });
     }
     }

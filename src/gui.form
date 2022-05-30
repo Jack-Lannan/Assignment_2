@@ -176,6 +176,7 @@
                 <properties>
                   <enabled value="true"/>
                   <model>
+                    <item value="Select Grade"/>
                     <item value="FL"/>
                     <item value="PS"/>
                     <item value="CR"/>

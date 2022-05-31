@@ -66,6 +66,9 @@ public class gui {
 
         degreeMajorText.setEnabled(false);
         degreeMinorText.setEnabled(false);
+        prizeNameText.setEnabled(false);
+        courseNameText.setEnabled(false);
+        topicNumberText.setEnabled(false);
 
 //      Disables the degree fields if 'Arts' is not selected
         degreeComboBox.addItemListener(new ItemListener() {
@@ -81,11 +84,36 @@ public class gui {
             }
         });
 
+   //   Disables the prize panel if 'Medical' is not selected
+        degreeComboBox.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent e) {
+                if (degreeComboBox.getSelectedIndex() == 3) {
+                    prizeNameText.setEnabled(true);
+                    courseNameText.setEnabled(true);
+                    topicNumberText.setEnabled(true);
+                }
+                else {
+                    prizeNameText.setEnabled(false);
+                    courseNameText.setEnabled(false);
+                    topicNumberText.setEnabled(false);
+                }
+            }
+        });
+
 //      Add Student Button
         addStudentButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (degreeComboBox.getSelectedIndex() == 0) {
                     JOptionPane.showMessageDialog(null, "No degree has been selected, please select a degree.");
+                }
+                else if (studentNumberText.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "No student ID has been entered, please enter a student ID.");
+                }
+                else if (familyNameText.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "No family name has been entered, please enter a family name.");
+                }
+                else if (givenNameText.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "No given name has been entered, please enter a given name.");
                 }
                 else if (degreeComboBox.getSelectedIndex() == 1) {
 
@@ -140,6 +168,7 @@ public class gui {
                 if (foundStudent != null) {
                     givenNameText.setText(foundStudent.getGivenName());
                     familyNameText.setText(foundStudent.getFamilyName());
+                    degreeComboBox.setSelectedItem(foundStudent.degree);
                 }
                 else {
                     JOptionPane.showMessageDialog(null, "No Student with this ID in database.");
@@ -184,6 +213,26 @@ public class gui {
                 System.out.println(results);
                 //}
                 }
+        });
+
+//      Award Prize Button
+        awardPrizeButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Student foundStudent = sd.findStudent(studentNumberText.getText());
+                if (prizeNameText.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "No prize name entered, please enter a prize name.");
+                }
+                else if (courseNameText.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "No course entered, please enter a course.");
+                }
+                else if (topicNumberText.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "No topic number entered, please enter the minimum number of topics.");
+                }
+                else {
+                    System.out.println("Testing the prize alerts");
+                }
+
+            }
         });
     }
     }

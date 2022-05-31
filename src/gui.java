@@ -61,10 +61,15 @@ public class gui {
 //      Add Student Button
         addStudentButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println(studentNumberText.getText());
-                System.out.println(Character.toString(degreeComboBox.getSelectedItem().toString().charAt(0)) + ',' + studentNumberText.getText() + ',' + familyNameText.getText() + ',' + givenNameText.getText());
-                sd.addStudent(Character.toString(degreeComboBox.getSelectedItem().toString().charAt(0)) + ',' + studentNumberText.getText() + ',' + familyNameText.getText() + ',' + givenNameText.getText());
-                sd.printRecords();
+                if (degreeComboBox.getSelectedIndex() == 0) {
+                    JOptionPane.showMessageDialog(null, "No degree has been selected, please select a degree.");
+                }
+                else {
+                    System.out.println(studentNumberText.getText());
+                    System.out.println(Character.toString(degreeComboBox.getSelectedItem().toString().charAt(0)) + ',' + studentNumberText.getText() + ',' + familyNameText.getText() + ',' + givenNameText.getText());
+                    sd.addStudent(Character.toString(degreeComboBox.getSelectedItem().toString().charAt(0)) + ',' + studentNumberText.getText() + ',' + familyNameText.getText() + ',' + givenNameText.getText());
+                    sd.printRecords();
+                }
             }
         });
 //        Print All Records Button (Add a seperate popout panel?)
@@ -72,6 +77,7 @@ public class gui {
             public void actionPerformed(ActionEvent e) {
                 if (sd.getDb().size() == 0) {
                     System.out.println("There is no available data.");
+                    JOptionPane.showMessageDialog(null, "There is no available data.");
                 }
                 else {
                     sd.printRecords();
@@ -83,6 +89,7 @@ public class gui {
             public void actionPerformed(ActionEvent e) {
                 sd.clearRecords();
                 System.out.println("All data has been cleared from the Database.");
+                JOptionPane.showMessageDialog(null, "All data has been cleared from the Database.");
             }
         });
 //      Find Student (Need to change the degree combobox?)

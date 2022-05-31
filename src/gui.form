@@ -87,6 +87,7 @@
             <properties>
               <enabled value="true"/>
               <model>
+                <item value="Select Degree"/>
                 <item value="Arts"/>
                 <item value="Science"/>
                 <item value="Medicine"/>

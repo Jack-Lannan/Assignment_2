@@ -71,10 +71,6 @@ class StudentTest {
     }
 
     @Test
-    void writeHeader() {
-
-    }
-    @Test
     void writeRecord() {
         Student student = new Student("S,1234,bob,bob");
         student.addResult("R,9800123,PSYC0123,FL,42");

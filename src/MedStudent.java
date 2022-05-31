@@ -7,20 +7,26 @@ public class MedStudent extends Student{
 
     MedStudent(String scanner){
         String thing[] = scanner.split(",");
+        this.degree = "Medicine";
         switch (thing.length){
-            case 1:
+            case 1 :
                 this.setFamilyName(thing[0]);
                 break;
-            case 5:
+            case 4:
                 this.setStudentID(thing[1]);
                 this.setFamilyName(thing[2]);
                 this.setGivenName(thing[3]);
-                this.degree = "Medicine";
-                this.prizes.add(thing[4]);
-                prizeCount=1;
-
                 break;
         }
+        if (thing.length>= 5){
+            this.setStudentID(thing[1]);
+            this.setFamilyName(thing[2]);
+            this.setGivenName(thing[3]);
+            for (int i = 4; i < thing.length; i++) {
+                this.prizes.add(thing[i]);
+            }
+        }
+        prizeCount =prizes.size();
     }
 
     public void addPrize(String prize){

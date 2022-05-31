@@ -6,15 +6,15 @@ public class ArtsStudent extends Student{
     ArtsStudent(String scanner){
         ArtsStudent student = new ArtsStudent();
         String thing[] = scanner.split(",");
+        this.degree = "Arts";
         switch (thing.length){
-            case 1:
-                this.setFamilyName(thing[2]);
+            case 2:
+                this.setFamilyName(thing[1]);
                 break;
             case 6:
                 this.setStudentID(thing[1]);
                 this.setFamilyName(thing[2]);
                 this.setGivenName(thing[3]);
-                this.degree = "Arts";
                 this.minor = thing[5];
                 this.major = thing[4];
                 break;
@@ -32,7 +32,6 @@ public class ArtsStudent extends Student{
     public ArtsStudent() {
 
     }
-
     public String writeRecord(){
         return "Academic record for " + this.getGivenName() + " " + this.getFamilyName() + "(" + this.getStudentID() + ")" + '\n'
                 + "Degree: " + this.degree + '\n'

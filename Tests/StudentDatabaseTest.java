@@ -1,21 +1,29 @@
+import org.junit.Before;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class StudentDatabaseTest {
-    StudentDatabase newStudent = new StudentDatabase();
+    static StudentDatabase newStudent;
+
+    @BeforeAll
+    static void before(){
+        newStudent = new StudentDatabase();
+        newStudent.addStudent("S,9990099,Smith,John");
+        newStudent.addStudent("M,9990199,Mary,Moo,Chemistry Prize 1998");
+    }
 
     @Test
     void addStudent() {
-      
         newStudent.addStudent("S,9990099,Smith,John");
         newStudent.addStudent("M,9990199,Mary,Moo,Chemistry Prize 1998");
-
     }
 
     @Test
     void findStudent() {
-        assertEquals("Moo Mary",newStudent.findStudent("9990199"));
+//        newStudent.addStudent("M,9990199,Mary,Moo,Chemistry Prize 1998");
+        assertEquals("Mary",newStudent.findStudent("9990199").getFamilyName());
     }
 
     @Test
@@ -40,6 +48,6 @@ class StudentDatabaseTest {
     @Test
     void clearRecords() {
         newStudent.clearRecords();
-        assertEquals(newStudent.getDb(),"");
+        assertEquals(newStudent.getDb(),"[]");
     }
 }

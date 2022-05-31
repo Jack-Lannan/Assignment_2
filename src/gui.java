@@ -87,6 +87,22 @@ public class gui {
                 if (degreeComboBox.getSelectedIndex() == 0) {
                     JOptionPane.showMessageDialog(null, "No degree has been selected, please select a degree.");
                 }
+                else if (degreeComboBox.getSelectedIndex() == 1) {
+
+                    if (degreeMajorText.getText().isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "No degree major has been entered, please enter a major.");
+                    }
+                    else if (degreeMinorText.getText().isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "No degree minor has been entered, please enter a minor.");
+                    }
+
+                    else {
+                        System.out.println(studentNumberText.getText());
+                        System.out.println(Character.toString(degreeComboBox.getSelectedItem().toString().charAt(0)) + ',' + studentNumberText.getText() + ',' + familyNameText.getText() + ',' + givenNameText.getText() + ',' + degreeMajorText.getText() + ',' + degreeMinorText.getText());
+                        sd.addStudent(Character.toString(degreeComboBox.getSelectedItem().toString().charAt(0)) + ',' + studentNumberText.getText() + ',' + familyNameText.getText() + ',' + givenNameText.getText() + ',' + degreeMajorText.getText() + ',' + degreeMinorText.getText());
+                        sd.printRecords();
+                    }
+                }
                 else {
                     System.out.println(studentNumberText.getText());
                     System.out.println(Character.toString(degreeComboBox.getSelectedItem().toString().charAt(0)) + ',' + studentNumberText.getText() + ',' + familyNameText.getText() + ',' + givenNameText.getText());
@@ -95,6 +111,8 @@ public class gui {
                 }
             }
         });
+
+
 //        Print All Records Button (Add a seperate popout panel?)
         printAllRecordsButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

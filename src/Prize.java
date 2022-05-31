@@ -6,29 +6,33 @@ public class Prize implements Constants{
     private String template;
     private int topicsRequired;
 
+    /*
+     * @name = name of the prize
+     * @template = topic codes mmed mmed00...etc.
+     * @topicsrequired = awards students with the highest average top "topicsrequired"(number of) topics.
+     */
     Prize(String prize){
         String[] prizes = prize.split(",");
-        name = prizes[1];
-        template = prizes[2];
-        topicsRequired = Integer.parseInt(prizes[3]);
+        this.name = prizes[1];
+        this.template = prizes[2];
+        this.topicsRequired = Integer.parseInt(prizes[3]);
     }
 
     public void awardPrize(StudentDatabase studentDatabase){
         MedStudent medStudent = null;
         LinkedList<MedStudent> meds = studentDatabase.getMeds();
 
+
         for (int i = 0;i<meds.size(); i++){
-            if (meds.get(i).getResults().length >= topicsRequired){
-                if(meds.get(i).getResult(template + ',' + topicsRequired) != null ){
-                    if (Arrays.stream(meds.get(i).getResult(template + ',' + topicsRequired)).sum() != 0){
-                        if (medStudent == null) {
-                            medStudent = meds.get(i);
-                        }
-                        int total = Arrays.stream(meds.get(i).getResult(template + ',' + topicsRequired)).sum();
-                        if (total/topicsRequired > Arrays.stream(medStudent.getResult(template + ',' + topicsRequired)).sum()/3 && total >= 0){
-                            medStudent = meds.get(i);
-                        }
-                    }
+            if (meds.get(i).getResults().length >= topicsRequired &&
+            meds.get(i).getResult(template + ',' + topicsRequired) != null &&
+            Arrays.stream(meds.get(i).getResult(template + ',' + topicsRequired)).sum() != 0 ){
+                if (medStudent == null) {
+                    medStudent = meds.get(i);
+                }
+                int total = Arrays.stream(meds.get(i).getResult(template + ',' + topicsRequired)).sum();
+                if (total/topicsRequired > Arrays.stream(medStudent.getResult(template + ',' + topicsRequired)).sum()/topicsRequired && total >= 0) {
+                    medStudent = meds.get(i);
                 }
             }
         }

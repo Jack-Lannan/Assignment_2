@@ -53,8 +53,13 @@ public class StudentDatabase implements Constants{
         }
     }
 
-    public void awardPrize(String one, String two, int three){
-        Prize prize = new Prize(one+','+two + ','+three);
+    /*
+     * @name = name of the prize
+     * @template = topic codes mmed mmed00...etc.
+     * @topicsrequired = awards students with the highest average top "topicsrequired"(number of) topics.
+     */
+    public void awardPrize(String name, String template, int topicsRequired){
+        Prize prize = new Prize(name+','+template + ','+topicsRequired);
         prize.awardPrize(this);
     }
 
@@ -76,6 +81,7 @@ public class StudentDatabase implements Constants{
         }
     }
 
+    //
     public String printcharRecords(){
         String thing = "";
         for (int i = 0; i< db.size();i++){

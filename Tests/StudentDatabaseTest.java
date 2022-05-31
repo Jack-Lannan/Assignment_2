@@ -27,7 +27,7 @@ class StudentDatabaseTest {
 
     @Test
     void awardPrize() {
-        newStudent.awardPrize();
+        newStudent.awardPrize("9990199", "MEDD", 26);
     }
 
     @Test
@@ -37,5 +37,7 @@ class StudentDatabaseTest {
 
     @Test
     void clearRecords() {
+        newStudent.clearRecords();
+        assertEquals(newStudent.getDb(),"");
     }
 }

@@ -22,7 +22,6 @@ public class Prize implements Constants{
         MedStudent medStudent = null;
         LinkedList<MedStudent> meds = studentDatabase.getMeds();
 
-
         for (int i = 0;i<meds.size(); i++){
             if (meds.get(i).getResults().length >= topicsRequired &&
             meds.get(i).getResult(template + ',' + topicsRequired) != null &&

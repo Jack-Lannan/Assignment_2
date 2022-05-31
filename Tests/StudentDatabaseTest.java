@@ -23,11 +23,13 @@ class StudentDatabaseTest {
         newStudent.addResult("R,9990199,COMP1001,DN,77");
         newStudent.addResult("R,9990199,MEDD0119,HD,86");
         newStudent.addResult("R,9990099,COMP1011,HD,99");
+        newStudent.addResult("R,9990199,MEDD0139,CR,75");
+        newStudent.addResult("R,9990199,MEDD0129,HD,96");
     }
 
     @Test
     void awardPrize() {
-        newStudent.awardPrize("9990199", "MEDD", 26);
+        newStudent.awardPrize("Theo", "MEDD", 2);
     }
 
     @Test

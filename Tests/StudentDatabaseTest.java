@@ -6,6 +6,8 @@ class StudentDatabaseTest {
 
     @Test
     void addStudent() {
+
+        addStudent("S,1234567,Jeff,John,Bioligy");
     }
 
     @Test

@@ -7,8 +7,10 @@ class StudentDatabaseTest {
 
     @Test
     void addStudent() {
+      
         newStudent.addStudent("S,9990099,Smith,John");
         newStudent.addStudent("M,9990199,Mary,Moo,Chemistry Prize 1998");
+
     }
 
     @Test

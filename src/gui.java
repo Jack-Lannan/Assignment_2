@@ -3,6 +3,10 @@ import jdk.jfr.Label;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 
 public class gui {
@@ -55,9 +59,28 @@ public class gui {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+
     }
 
     public gui() {
+
+        degreeMajorText.setEnabled(false);
+        degreeMinorText.setEnabled(false);
+
+//      Disables the degree fields if 'Arts' is not selected
+        degreeComboBox.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent e) {
+                if (degreeComboBox.getSelectedIndex() == 1) {
+                    degreeMajorText.setEnabled(true);
+                    degreeMinorText.setEnabled(true);
+                }
+                else {
+                    degreeMajorText.setEnabled(false);
+                    degreeMinorText.setEnabled(false);
+                }
+            }
+        });
+
 //      Add Student Button
         addStudentButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -143,9 +166,6 @@ public class gui {
                 System.out.println(results);
                 //}
                 }
-
-
-
         });
     }
     }

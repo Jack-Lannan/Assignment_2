@@ -3,6 +3,10 @@ import jdk.jfr.Label;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 
 public class gui {
@@ -55,23 +59,66 @@ public class gui {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+
     }
 
     public gui() {
+
+        degreeMajorText.setEnabled(false);
+        degreeMinorText.setEnabled(false);
+
+//      Disables the degree fields if 'Arts' is not selected
+        degreeComboBox.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent e) {
+                if (degreeComboBox.getSelectedIndex() == 1) {
+                    degreeMajorText.setEnabled(true);
+                    degreeMinorText.setEnabled(true);
+                }
+                else {
+                    degreeMajorText.setEnabled(false);
+                    degreeMinorText.setEnabled(false);
+                }
+            }
+        });
+
 //      Add Student Button
         addStudentButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println(studentNumberText.getText());
-                System.out.println(Character.toString(degreeComboBox.getSelectedItem().toString().charAt(0)) + ',' + studentNumberText.getText() + ',' + familyNameText.getText() + ',' + givenNameText.getText());
-                sd.addStudent(Character.toString(degreeComboBox.getSelectedItem().toString().charAt(0)) + ',' + studentNumberText.getText() + ',' + familyNameText.getText() + ',' + givenNameText.getText());
-                sd.printRecords();
+                if (degreeComboBox.getSelectedIndex() == 0) {
+                    JOptionPane.showMessageDialog(null, "No degree has been selected, please select a degree.");
+                }
+                else if (degreeComboBox.getSelectedIndex() == 1) {
+
+                    if (degreeMajorText.getText().isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "No degree major has been entered, please enter a major.");
+                    }
+                    else if (degreeMinorText.getText().isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "No degree minor has been entered, please enter a minor.");
+                    }
+
+                    else {
+                        System.out.println(studentNumberText.getText());
+                        System.out.println(Character.toString(degreeComboBox.getSelectedItem().toString().charAt(0)) + ',' + studentNumberText.getText() + ',' + familyNameText.getText() + ',' + givenNameText.getText() + ',' + degreeMajorText.getText() + ',' + degreeMinorText.getText());
+                        sd.addStudent(Character.toString(degreeComboBox.getSelectedItem().toString().charAt(0)) + ',' + studentNumberText.getText() + ',' + familyNameText.getText() + ',' + givenNameText.getText() + ',' + degreeMajorText.getText() + ',' + degreeMinorText.getText());
+                        sd.printRecords();
+                    }
+                }
+                else {
+                    System.out.println(studentNumberText.getText());
+                    System.out.println(Character.toString(degreeComboBox.getSelectedItem().toString().charAt(0)) + ',' + studentNumberText.getText() + ',' + familyNameText.getText() + ',' + givenNameText.getText());
+                    sd.addStudent(Character.toString(degreeComboBox.getSelectedItem().toString().charAt(0)) + ',' + studentNumberText.getText() + ',' + familyNameText.getText() + ',' + givenNameText.getText());
+                    sd.printRecords();
+                }
             }
         });
+
+
 //        Print All Records Button (Add a seperate popout panel?)
         printAllRecordsButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (sd.getDb().size() == 0) {
                     System.out.println("There is no available data.");
+                    JOptionPane.showMessageDialog(null, "There is no available data.");
                 }
                 else {
                     sd.printRecords();
@@ -83,6 +130,7 @@ public class gui {
             public void actionPerformed(ActionEvent e) {
                 sd.clearRecords();
                 System.out.println("All data has been cleared from the Database.");
+                JOptionPane.showMessageDialog(null, "All data has been cleared from the Database.");
             }
         });
 //      Find Student (Need to change the degree combobox?)
@@ -136,9 +184,6 @@ public class gui {
                 System.out.println(results);
                 //}
                 }
-
-
-
         });
     }
     }

@@ -1,6 +1,7 @@
 import jdk.jfr.Label;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -65,21 +66,35 @@ public class gui {
     public gui() {
 
         degreeMajorText.setEnabled(false);
+        degreeMajorText.setBackground(Color.lightGray);
         degreeMinorText.setEnabled(false);
+        degreeMinorText.setBackground(Color.lightGray);
         prizeNameText.setEnabled(false);
+        prizeNameText.setBackground(Color.lightGray);
         courseNameText.setEnabled(false);
+        courseNameText.setBackground(Color.lightGray);
         topicNumberText.setEnabled(false);
+        topicNumberText.setBackground(Color.lightGray);
+        awardPrizeButton.setEnabled(false);
+        prizesList.setEnabled(false);
+        prizesList.setBackground(Color.lightGray);
+        addStudentButton.setText("Add Student");
+        degreeComboBox.setSelectedIndex(0);
 
 //      Disables the degree fields if 'Arts' is not selected
         degreeComboBox.addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent e) {
                 if (degreeComboBox.getSelectedIndex() == 1) {
                     degreeMajorText.setEnabled(true);
+                    degreeMajorText.setBackground(Color.white);
                     degreeMinorText.setEnabled(true);
+                    degreeMinorText.setBackground(Color.white);
                 }
                 else {
                     degreeMajorText.setEnabled(false);
+                    degreeMajorText.setBackground(Color.lightGray);
                     degreeMinorText.setEnabled(false);
+                    degreeMinorText.setBackground(Color.lightGray);
                 }
             }
         });
@@ -89,13 +104,23 @@ public class gui {
             public void itemStateChanged(ItemEvent e) {
                 if (degreeComboBox.getSelectedIndex() == 3) {
                     prizeNameText.setEnabled(true);
+                    prizeNameText.setBackground(Color.white);
                     courseNameText.setEnabled(true);
+                    courseNameText.setBackground(Color.white);
                     topicNumberText.setEnabled(true);
+                    topicNumberText.setBackground(Color.white);
+                    awardPrizeButton.setEnabled(true);
+                    prizesList.setBackground(Color.white);
                 }
                 else {
                     prizeNameText.setEnabled(false);
+                    prizeNameText.setBackground(Color.lightGray);
                     courseNameText.setEnabled(false);
+                    courseNameText.setBackground(Color.lightGray);
                     topicNumberText.setEnabled(false);
+                    topicNumberText.setBackground(Color.lightGray);
+                    awardPrizeButton.setEnabled(false);
+                    prizesList.setBackground(Color.lightGray);
                 }
             }
         });
@@ -103,7 +128,16 @@ public class gui {
 //      Add Student Button
         addStudentButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if (degreeComboBox.getSelectedIndex() == 0) {
+                Student foundStudent = sd.findStudent(studentNumberText.getText());
+                if (addStudentButton.getText().equals("Enter New Student")) {
+                    studentNumberText.setText("");
+                    familyNameText.setText("");
+                    givenNameText.setText("");
+                    degreeComboBox.setSelectedIndex(0);
+                    addStudentButton.setText("Add Student");
+                }
+
+               else if (degreeComboBox.getSelectedIndex() == 0) {
                     JOptionPane.showMessageDialog(null, "No degree has been selected, please select a degree.");
                 }
                 else if (studentNumberText.getText().isEmpty()) {
@@ -115,6 +149,7 @@ public class gui {
                 else if (givenNameText.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "No given name has been entered, please enter a given name.");
                 }
+
                 else if (degreeComboBox.getSelectedIndex() == 1) {
 
                     if (degreeMajorText.getText().isEmpty()) {
@@ -125,23 +160,43 @@ public class gui {
                     }
 
                     else {
-                        System.out.println(studentNumberText.getText());
-                        System.out.println(Character.toString(degreeComboBox.getSelectedItem().toString().charAt(0)) + ',' + studentNumberText.getText() + ',' + familyNameText.getText() + ',' + givenNameText.getText() + ',' + degreeMajorText.getText() + ',' + degreeMinorText.getText());
-                        sd.addStudent(Character.toString(degreeComboBox.getSelectedItem().toString().charAt(0)) + ',' + studentNumberText.getText() + ',' + familyNameText.getText() + ',' + givenNameText.getText() + ',' + degreeMajorText.getText() + ',' + degreeMinorText.getText());
-                        sd.printRecords();
+                        if (foundStudent != null) {
+                            studentNumberText.setText("");
+                            familyNameText.setText("");
+                            givenNameText.setText("");
+                            degreeComboBox.setSelectedItem(0);
+                            JOptionPane.showMessageDialog(null, "Student already exists, please check the ID and try again.");
+                        }
+                        else {
+                            System.out.println(studentNumberText.getText());
+                            System.out.println(Character.toString(degreeComboBox.getSelectedItem().toString().charAt(0)) + ',' + studentNumberText.getText() + ',' + familyNameText.getText() + ',' + givenNameText.getText() + ',' + degreeMajorText.getText() + ',' + degreeMinorText.getText());
+                            sd.addStudent(Character.toString(degreeComboBox.getSelectedItem().toString().charAt(0)) + ',' + studentNumberText.getText() + ',' + familyNameText.getText() + ',' + givenNameText.getText() + ',' + degreeMajorText.getText() + ',' + degreeMinorText.getText());
+                            System.out.println("Student " + studentNumberText.getText() + " has been added");
+                            addStudentButton.setText("Enter New Student");
+                        }
                     }
                 }
                 else {
-                    System.out.println(studentNumberText.getText());
-                    System.out.println(Character.toString(degreeComboBox.getSelectedItem().toString().charAt(0)) + ',' + studentNumberText.getText() + ',' + familyNameText.getText() + ',' + givenNameText.getText());
-                    sd.addStudent(Character.toString(degreeComboBox.getSelectedItem().toString().charAt(0)) + ',' + studentNumberText.getText() + ',' + familyNameText.getText() + ',' + givenNameText.getText());
-                    sd.printRecords();
+                    if (foundStudent != null) {
+                        studentNumberText.setText("");
+                        familyNameText.setText("");
+                        givenNameText.setText("");
+                        degreeComboBox.setSelectedItem(0);
+                        JOptionPane.showMessageDialog(null, "Student already exists, please check the ID and try again.");
+                    }
+                    else {
+                        System.out.println(studentNumberText.getText());
+                        System.out.println(Character.toString(degreeComboBox.getSelectedItem().toString().charAt(0)) + ',' + studentNumberText.getText() + ',' + familyNameText.getText() + ',' + givenNameText.getText());
+                        sd.addStudent(Character.toString(degreeComboBox.getSelectedItem().toString().charAt(0)) + ',' + studentNumberText.getText() + ',' + familyNameText.getText() + ',' + givenNameText.getText());
+                        System.out.println("Student " + studentNumberText.getText() + " has been added");
+                        addStudentButton.setText("Enter New Student");
+                    }
                 }
             }
         });
 
 
-//        Print All Records Button (Add a seperate popout panel?)
+//      Print All Records Button (Add a seperate popout panel?)
         printAllRecordsButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (sd.getDb().size() == 0) {

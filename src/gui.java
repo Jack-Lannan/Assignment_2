@@ -8,6 +8,8 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.Arrays;
+import java.util.List;
 
 
 public class gui {
@@ -64,6 +66,7 @@ public class gui {
     }
 
     public gui() {
+
 
         degreeMajorText.setEnabled(false);
         degreeMajorText.setBackground(Color.lightGray);
@@ -216,7 +219,7 @@ public class gui {
                 JOptionPane.showMessageDialog(null, "All data has been cleared from the Database.");
             }
         });
-//      Find Student (Need to change the degree combobox?)
+//      Find Student Button
         findStudentButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 Student foundStudent = sd.findStudent(studentNumberText.getText());
@@ -250,24 +253,50 @@ public class gui {
                 }
                 else {
                     String awardedGrade = gradeCombobox.getSelectedItem().toString();
-                    String enteredTopic = topicCodeText.getText();
+                    String enteredTopic = topicCodeText.getText().toUpperCase();
                     String awardedMark = markText.getText();
                     foundStudent.addResult("R" + ',' + foundStudent.getStudentID() + ',' + enteredTopic + ',' + awardedGrade + ',' + awardedMark);
                 }
             }
         });
 
+
+
 //      Find Topic Button
         findTopicResultButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Student foundStudent = sd.findStudent(studentNumberText.getText());
-                //if (topicCodeText.getText().contains(foundStudent.writeResults())) {
-                 //   gradeCombobox.
-                String results = foundStudent.writeResults();
-                System.out.println(results);
-                //}
+                String topicCode = topicCodeText.getText().toUpperCase();
+                Result[] results = foundStudent.getResults();
+                for (int i = 0; i < results.length; i++) {
+
+                    if (results[i] != null) {
+                        if (results[i].getCode().equals(topicCode)) {
+                            if (results[i].getMark() == -1) {
+                                gradeCombobox.setSelectedItem(results[i].getGrade());
+                                markText.setText("");
+                                break;
+                            }
+                            else {
+                                gradeCombobox.setSelectedItem(results[i].getGrade());
+                                markText.setText(Integer.toString(results[i].getMark()));
+                                break;
+                            }
+                        }
+/*                       Still not working
+JAcks' code:  if(results[i].getGrade() == "FL" || results[i].getGrade() == "PS" || results[i].getGrade() == "CR" ||results[i].getGrade() == "DN" || results[i].getGrade() == "HD" )
+                        if (results[i].getCode() != topicCode) {
+                            System.out.println(results[i]);
+                            topicCodeText.setText("");
+                            gradeCombobox.setSelectedIndex(0);
+                            markText.setText("");
+                            JOptionPane.showMessageDialog(null, "No topic code found.");
+                            break;
+                        }*/
+                    }
                 }
+            }
         });
 
 //      Award Prize Button

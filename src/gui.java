@@ -1,15 +1,9 @@
-import jdk.jfr.Label;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.util.Arrays;
-import java.util.List;
 
 
 public class gui {
@@ -55,6 +49,9 @@ public class gui {
     private JLabel topicNumberLabel;
     private JLabel courseNameLabel;
     private JLabel databaseProgramLabel;
+    private JButton insertButton;
+    private JTextField fileField;
+    private JButton insertFileButton;
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("Student Database");
@@ -67,7 +64,7 @@ public class gui {
 
     public gui() {
 
-
+        System.out.println(insertFileButton.isEnabled());
         degreeMajorText.setEnabled(false);
         degreeMajorText.setBackground(Color.lightGray);
         degreeMinorText.setEnabled(false);
@@ -127,7 +124,13 @@ public class gui {
                 }
             }
         });
-
+        insertFileButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("hello");
+                sd.insertFile(fileField.getText(), sd);
+            }
+        });
 //      Add Student Button
         addStudentButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -284,17 +287,14 @@ public class gui {
                                 break;
                             }
                         }
-/*                       Still not working
-JAcks' code:  if(results[i].getGrade() == "FL" || results[i].getGrade() == "PS" || results[i].getGrade() == "CR" ||results[i].getGrade() == "DN" || results[i].getGrade() == "HD" )
-                        if (results[i].getCode() != topicCode) {
+                    }else{
                             System.out.println(results[i]);
                             topicCodeText.setText("");
                             gradeCombobox.setSelectedIndex(0);
                             markText.setText("");
                             JOptionPane.showMessageDialog(null, "No topic code found.");
                             break;
-                        }*/
-                    }
+                        }
                 }
             }
         });

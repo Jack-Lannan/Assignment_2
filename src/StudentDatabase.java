@@ -1,3 +1,6 @@
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.*;
 
 public class StudentDatabase implements Constants{
@@ -8,7 +11,37 @@ public class StudentDatabase implements Constants{
     StudentDatabase(){
     }
 
-    StudentDatabase(Integer value){
+    public void insertFile(String filename, StudentDatabase studentDatabase){
+        Scanner fileScanner;
+        try{
+            fileScanner = new Scanner(new FileInputStream("data" + File.separator + filename));
+            while(fileScanner.hasNext()){
+                String nextLine = fileScanner.nextLine();
+                switch (nextLine.charAt(0)){
+                    case 'S':
+                    case 'M':
+                    case 'A':
+                        studentDatabase.addStudent(nextLine);
+                        String student[] = nextLine.split(",");
+                        break;
+                    case 'R':
+                        //need the database to be working for this stage, access the student by their id
+                        //add the given result to their corresponding result array that they would have
+                        //database.findStudent(String their id)
+                        //database.addResult(String of the given result field)
+                        String results[] = nextLine.split(",");
+                        studentDatabase.findStudent(results[1]).addResult(nextLine);
+//                        System.out.println(studentDatabase.findStudent(results[1]).writeRecord());
+                        break;
+                    case 'P':
+                        Prize prize = new Prize(nextLine);
+                        prize.awardPrize(studentDatabase);
+                }
+            }
+            studentDatabase.printRecords();
+        }catch (FileNotFoundException ex){
+            System.out.println(filename + " not found!");
+        }
     }
 
     // getter for the DB
@@ -18,7 +51,8 @@ public class StudentDatabase implements Constants{
 
     // Add the student from input. Characterises them into Science, Medicine or Art.
     public void addStudent(String student){
-        switch (student.charAt(0)){
+        if (db.size() < studentCount){
+        switch (student.charAt(0)) {
             case 'S':
                 db.add(new Student(student));
                 studentCount++;
@@ -27,10 +61,11 @@ public class StudentDatabase implements Constants{
                 db.add(new MedStudent(student));
                 studentCount++;
                 break;
-            case'A':
+            case 'A':
                 db.add(new ArtsStudent(student));
                 studentCount++;
                 break;
+        }
         }
     }
 

@@ -62,9 +62,17 @@ public class gui {
 
     }
 
-    public gui() {
+    public void clear(){
+        studentNumberText.setText("");
+        topicCodeText.setText("");
+        markText.setText("");
+        familyNameText.setText("");
+        givenNameText.setText("");
+        gradeCombobox.setSelectedIndex(0);
+        degreeComboBox.setSelectedIndex(0);
+    }
 
-        System.out.println(insertFileButton.isEnabled());
+    public gui() {
         degreeMajorText.setEnabled(false);
         degreeMajorText.setBackground(Color.lightGray);
         degreeMinorText.setEnabled(false);
@@ -80,6 +88,8 @@ public class gui {
         prizesList.setBackground(Color.lightGray);
         addStudentButton.setText("Add Student");
         degreeComboBox.setSelectedIndex(0);
+
+
 
 //      Disables the degree fields if 'Arts' is not selected
         degreeComboBox.addItemListener(new ItemListener() {
@@ -125,9 +135,7 @@ public class gui {
             }
         });
         insertFileButton.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("hello");
                 sd.insertFile(fileField.getText(), sd);
             }
         });
@@ -136,10 +144,7 @@ public class gui {
             public void actionPerformed(ActionEvent e) {
                 Student foundStudent = sd.findStudent(studentNumberText.getText());
                 if (addStudentButton.getText().equals("Enter New Student")) {
-                    studentNumberText.setText("");
-                    familyNameText.setText("");
-                    givenNameText.setText("");
-                    degreeComboBox.setSelectedIndex(0);
+                    clear();
                     addStudentButton.setText("Add Student");
                 }
 
@@ -167,10 +172,7 @@ public class gui {
 
                     else {
                         if (foundStudent != null) {
-                            studentNumberText.setText("");
-                            familyNameText.setText("");
-                            givenNameText.setText("");
-                            degreeComboBox.setSelectedItem(0);
+                            clear();
                             JOptionPane.showMessageDialog(null, "Student already exists, please check the ID and try again.");
                         }
                         else {
@@ -184,10 +186,7 @@ public class gui {
                 }
                 else {
                     if (foundStudent != null) {
-                        studentNumberText.setText("");
-                        familyNameText.setText("");
-                        givenNameText.setText("");
-                        degreeComboBox.setSelectedItem(0);
+                        clear();
                         JOptionPane.showMessageDialog(null, "Student already exists, please check the ID and try again.");
                     }
                     else {
@@ -265,29 +264,36 @@ public class gui {
 
 
 
+
+
 //      Find Topic Button
         findTopicResultButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (sd.findStudent(studentNumberText.getText()) == null){
+                    JOptionPane.showMessageDialog(null, "No Topic Code entered, please select a topic code.");
+
+                    return;
+                }
                 Student foundStudent = sd.findStudent(studentNumberText.getText());
                 String topicCode = topicCodeText.getText().toUpperCase();
                 Result[] results = foundStudent.getResults();
-                for (int i = 0; i < results.length; i++) {
+                    for (int i = 0; i < results.length; i++) {
 
-                    if (results[i] != null) {
-                        if (results[i].getCode().equals(topicCode)) {
-                            if (results[i].getMark() == -1) {
-                                gradeCombobox.setSelectedItem(results[i].getGrade());
-                                markText.setText("");
-                                break;
+                        if (results[i] != null) {
+                            if (results[i].getCode().equals(topicCode)) {
+                                if (results[i].getMark() == -1) {
+                                    gradeCombobox.setSelectedItem(results[i].getGrade());
+                                    markText.setText("");
+                                    break;
+                                }
+                                else {
+                                    gradeCombobox.setSelectedItem(results[i].getGrade());
+                                    markText.setText(Integer.toString(results[i].getMark()));
+                                    break;
+                                }
                             }
-                            else {
-                                gradeCombobox.setSelectedItem(results[i].getGrade());
-                                markText.setText(Integer.toString(results[i].getMark()));
-                                break;
-                            }
-                        }
-                    }else{
+                        }else{
                             System.out.println(results[i]);
                             topicCodeText.setText("");
                             gradeCombobox.setSelectedIndex(0);
@@ -295,7 +301,7 @@ public class gui {
                             JOptionPane.showMessageDialog(null, "No topic code found.");
                             break;
                         }
-                }
+                    }
             }
         });
 

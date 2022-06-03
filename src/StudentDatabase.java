@@ -1,6 +1,6 @@
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.*;
 
 public class StudentDatabase implements Constants{
@@ -52,6 +52,7 @@ public class StudentDatabase implements Constants{
     // Add the student from input. Characterises them into Science, Medicine or Art.
     public void addStudent(String student){
         if (db.size() < studentCount){
+
         switch (student.charAt(0)) {
             case 'S':
                 db.add(new Student(student));
@@ -67,6 +68,7 @@ public class StudentDatabase implements Constants{
                 break;
         }
         }
+        writeToFile(this);
     }
 
     // Finds student using StudentID.
@@ -85,11 +87,13 @@ public class StudentDatabase implements Constants{
                 db.get(i).addResult(results);
             }
         }
+        writeToFile(this);
     }
 
     public void awardPrize(String one, String two, int three){
         Prize prize = new Prize("P, " + one+','+two + ','+three);
         prize.awardPrize(this);
+        writeToFile(this);
     }
 
     // Returns a list of students studying Medicine.
@@ -124,6 +128,23 @@ public class StudentDatabase implements Constants{
         this.studentCount = 0;
     }
 
-
+    public void writeToFile(StudentDatabase studentDatabase){
+        studentDatabase.printRecords();
+        try{
+            File myObj = new File("data/output/databaseOutput.txt");
+            if (myObj.createNewFile()) {
+                System.out.println("File created: " + myObj.getName());
+            } else {
+                System.out.println("File already exists.");
+            }
+            FileWriter mywriter = new FileWriter("data/output/databaseOutput.txt");
+            Files.writeString(Path.of("data/output/databaseOutput.txt"),studentDatabase.printcharRecords());
+            mywriter.close();
+            System.out.println(Files.readString(Path.of("data/output/databaseOutput.txt")));
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
 
 }

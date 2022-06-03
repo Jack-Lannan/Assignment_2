@@ -73,6 +73,18 @@ public class Student implements Constants{
             }
         }
     }
+
+    public void addResult(String scanner, StudentDatabase studentDatabase) {
+        Result result = new Result(scanner);
+        for (int i = 0; i < 24; i++) {
+            if (results[i] == null) {
+                results[i] = result;
+                topicCount++;
+                return;
+            }
+        }
+    }
+
     public Result[] getResults() {
         return results;
     }

@@ -20,7 +20,7 @@ public class gui {
     private JTextField degreeMajorText;
     private JTextField degreeMinorText;
     private JButton findStudentButton;
-    private JList prizesList;
+    private JTextArea prizesList;
     private JButton addStudentButton;
     private JTextField prizeNameText;
     private JTextField courseNameText;
@@ -59,7 +59,6 @@ public class gui {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-
     }
 
     public void clear(){
@@ -257,7 +256,8 @@ public class gui {
                     String awardedGrade = gradeCombobox.getSelectedItem().toString();
                     String enteredTopic = topicCodeText.getText().toUpperCase();
                     String awardedMark = markText.getText();
-                    foundStudent.addResult("R" + ',' + foundStudent.getStudentID() + ',' + enteredTopic + ',' + awardedGrade + ',' + awardedMark);
+                    foundStudent.addResult("R" + ',' + foundStudent.getStudentID() + ',' + enteredTopic + ',' + awardedGrade + ',' + awardedMark, sd);
+                    sd.writeToFile(sd);
                 }
             }
         });

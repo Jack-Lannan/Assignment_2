@@ -118,8 +118,8 @@ public class Student implements Constants{
 
     public String writeRecord(){
         return "Academic record for " + this.getGivenName() + " " + this.getFamilyName() + "(" + this.getStudentID() + ")" + '\n'
-                + "Degree: " + this.degree + '\n'
-                + this.writeResults();
+                + "Degree: " + this.degree
+                + this.writeResults() + '\n';
     }
 
     @Override

@@ -20,8 +20,8 @@ public class Result
 
     public String write(){
         if (this.getMark() >= 0)
-            return this.getCode() + " " + this.getGrade() + " " + this.getMark() + '\n';
-        return this.getCode() + " " + this.getGrade() + '\n';
+            return '\n' + this.getCode() + " " + this.getGrade() + " " + this.getMark();
+        return '\n' +this.getCode() + " " + this.getGrade();
     }
 
     public String getCode() {

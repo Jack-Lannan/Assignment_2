@@ -16,7 +16,6 @@ public class Prize implements Constants{
     public void awardPrize(StudentDatabase studentDatabase){
         MedStudent medStudent = null;
         LinkedList<MedStudent> meds = studentDatabase.getMeds();
-
         for (int i = 0;i<meds.size(); i++){
             if (meds.get(i).getResults().length >= topicsRequired){
                 if(meds.get(i).getResult(template + ',' + topicsRequired) != null ){
@@ -25,7 +24,7 @@ public class Prize implements Constants{
                             medStudent = meds.get(i);
                         }
                         int total = Arrays.stream(meds.get(i).getResult(template + ',' + topicsRequired)).sum();
-                        if (total/topicsRequired > Arrays.stream(medStudent.getResult(template + ',' + topicsRequired)).sum()/3 && total >= 0){
+                        if (total/topicsRequired > Arrays.stream(medStudent.getResult(template + ',' + topicsRequired)).sum()/topicsRequired && total >= 0){
                             medStudent = meds.get(i);
                         }
                     }
@@ -33,7 +32,8 @@ public class Prize implements Constants{
             }
         }
         if (medStudent != null)
-            if (medStudent.prizes.size() < NUMBER_OF_PRIZES )
+            if (medStudent.prizes.size() < NUMBER_OF_PRIZES ){
                 medStudent.addPrize(name);
+            }
     }
 }

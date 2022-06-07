@@ -88,7 +88,7 @@ public class StudentDatabase implements Constants{
     }
 
     public void awardPrize(String one, String two, int three){
-        Prize prize = new Prize("P," + one + ',' + two + ',' + three);
+        Prize prize = new Prize("P,"+one+','+two + ','+three);
         prize.awardPrize(this);
     }
 

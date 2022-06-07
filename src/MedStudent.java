@@ -40,14 +40,16 @@ public class MedStudent extends Student{
     public String writeRecord () {
         String concatenate = "";
         for (int i = 0; i < prizes.size(); i++) {
-            if (prizes.get(i) != null) {
-            concatenate += prizes.get(i) + '\n';
+            if (i == 0)
+                concatenate = prizes.get(i);
+            else if (prizes.get(i) != null) {
+            concatenate += '\n' + prizes.get(i) ;
             }
         }
 
         return "Academic record for " + this.getGivenName() + " " + this.getFamilyName() + "(" + this.getStudentID() + ")" + '\n'
                 + "Degree: " + this.degree + '\n'
                 + "Prize: " + concatenate
-                + this.writeResults();
+                + this.writeResults() + '\n';
         }
     }

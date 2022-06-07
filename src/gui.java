@@ -330,7 +330,8 @@ public class gui {
                     JOptionPane.showMessageDialog(null, "No topic number entered, please enter the minimum number of topics.");
                 }
                 else {
-                    System.out.println("Testing the prize alerts");
+                    sd.awardPrize(prizeNameText.getText(),courseNameText.getText(),Integer.parseInt(topicNumberText.getText()));
+                    JOptionPane.showMessageDialog(null, "Congratulations, This student has been awarded a prize!");
                 }
 
             }

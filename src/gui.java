@@ -142,7 +142,9 @@ public class gui {
                     degreeComboBox.setSelectedIndex(0);
                     addStudentButton.setText("Add Student");
                 }
-
+                else if (studentNumberText.getText().length() > 7) {
+                    JOptionPane.showMessageDialog(null, "This student code is too long. Try again with a 7 digit number.");
+                }
                else if (degreeComboBox.getSelectedIndex() == 0) {
                     JOptionPane.showMessageDialog(null, "No degree has been selected, please select a degree.");
                 }
@@ -155,6 +157,12 @@ public class gui {
                 else if (givenNameText.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "No given name has been entered, please enter a given name.");
                 }
+                else if (familyNameText.getText().matches("[0-9]+")) {
+                    JOptionPane.showMessageDialog(null,"The Family Name field should not contain numbers. Try Again");
+                }
+                else if (givenNameText.getText().matches("[0-9]+")) {
+                    JOptionPane.showMessageDialog(null,"The Given Name field should not contain numbers. Try Again");
+                }
 
                 else if (degreeComboBox.getSelectedIndex() == 1) {
 
@@ -163,6 +171,9 @@ public class gui {
                     }
                     else if (degreeMinorText.getText().isEmpty()) {
                         JOptionPane.showMessageDialog(null, "No degree minor has been entered, please enter a minor.");
+                    }
+                    else if (degreeMajorText.getText().length() > 8) {
+                        JOptionPane.showMessageDialog(null, "This Degree Major is Too Long. Please condense to 8 characters.");
                     }
 
                     else {
@@ -253,6 +264,12 @@ public class gui {
                 }
                 else if (topicCodeText.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "No Topic Code entered, please select a topic code.");
+                }
+                else if (topicCodeText.getText().length() > 8) {
+                    JOptionPane.showMessageDialog(null, "This topic code has been incorrectly inputted. Please try again.");
+                }
+                else if (Integer.parseInt(markText.getText()) < 0 || Integer.parseInt(markText.getText()) > 100) {
+                    JOptionPane.showMessageDialog(null, "error");
                 }
                 else {
                     String awardedGrade = gradeCombobox.getSelectedItem().toString();

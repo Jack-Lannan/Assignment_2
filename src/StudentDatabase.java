@@ -47,7 +47,7 @@ public class StudentDatabase implements Constants{
     public void addResult(String results){
         String resultSection[]  = results.split(",");
         for (int i = 0; i< db.size(); i++){
-            if (db.get(i).getStudentID() == resultSection[1]){
+            if (db.get(i).getStudentID().equals(resultSection[1])){
                 db.get(i).addResult(results);
             }
         }

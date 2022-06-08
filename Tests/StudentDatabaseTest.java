@@ -34,6 +34,7 @@ class StudentDatabaseTest {
         newStudent.addResult("R,9990099,COMP1011,HD,99");
         newStudent.addResult("R,9990199,MEDD0139,CR,75");
         newStudent.addResult("R,9990199,MEDD0129,HD,96");
+        newStudent.printRecords();
     }
 
    @Test

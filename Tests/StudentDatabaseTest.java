@@ -44,6 +44,8 @@ class StudentDatabaseTest {
 
     @Test
     void printRecords() {
+        newStudent.addStudent("M,1234567,jim,joff");
+        newStudent.addResult("R,1234567,MEDD0139,HD,100");
         newStudent.printRecords();
     }
 

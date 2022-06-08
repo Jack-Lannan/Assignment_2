@@ -104,10 +104,20 @@ public class StudentDatabase implements Constants{
     }
 
     // Prints every student's record.
-    public void printRecords(){
-        for (int i = 0; i< db.size();i++){
+    public String printRecords() {
+        for (int i = 0; i < db.size(); i++) {
             System.out.println(db.get(i).writeRecord());
         }
+        return "";
+    }
+    public String recordString(){
+        String result = "";
+        for (Student student: db) {
+            result += "Academic record for " + student.getGivenName() + " " + student.getFamilyName() + "(" + student.getStudentID() + ")" + '\n'
+                    + "Degree: " + student.degree
+                    + student.writeResults() + '\n';
+        }
+        return result;
     }
 
     public String printcharRecords(){

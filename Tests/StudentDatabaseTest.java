@@ -1,11 +1,12 @@
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 class StudentDatabaseTest {
     static StudentDatabase newStudent;
+    static StudentDatabase empty;
 
     @BeforeAll
     static void before(){
@@ -35,7 +36,7 @@ class StudentDatabaseTest {
         newStudent.addResult("R,9990199,MEDD0129,HD,96");
     }
 
-    @Test
+   @Test
     void awardPrize() {
         newStudent.awardPrize("Theo", "MEDD", 2);
     }
@@ -45,9 +46,9 @@ class StudentDatabaseTest {
         newStudent.printRecords();
     }
 
-    @Test
+   @Test
     void clearRecords() {
         newStudent.clearRecords();
-        assertEquals(newStudent.getDb(),"[]");
+        assertEquals(newStudent.getDb().toString(),"[]");
     }
 }

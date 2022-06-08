@@ -70,10 +70,7 @@ class StudentTest {
         assertEquals(2,s.getTopicCount());
     }
 
-    @Test
-    void writeHeader() {
 
-    }
     @Test
     void writeRecord() {
         Student student = new Student("S,1234,bob,bob");

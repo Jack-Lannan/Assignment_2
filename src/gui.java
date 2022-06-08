@@ -4,8 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.io.PrintStream;
-import java.util.Arrays;
 
 
 public class gui {
@@ -65,19 +63,10 @@ public class gui {
     }
 
     public gui() {
-
-        System.out.println(insertFileButton.isEnabled());
         degreeMajorText.setEnabled(false);
         degreeMajorText.setBackground(Color.lightGray);
         degreeMinorText.setEnabled(false);
         degreeMinorText.setBackground(Color.lightGray);
-        prizeNameText.setEnabled(false);
-        prizeNameText.setBackground(Color.lightGray);
-        courseNameText.setEnabled(false);
-        courseNameText.setBackground(Color.lightGray);
-        topicNumberText.setEnabled(false);
-        topicNumberText.setBackground(Color.lightGray);
-        awardPrizeButton.setEnabled(false);
         prizesList.setEnabled(false);
         prizesList.setBackground(Color.lightGray);
         addStudentButton.setText("Add Student");
@@ -105,23 +94,9 @@ public class gui {
         degreeComboBox.addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent e) {
                 if (degreeComboBox.getSelectedIndex() == 3) {
-                    prizeNameText.setEnabled(true);
-                    prizeNameText.setBackground(Color.white);
-                    courseNameText.setEnabled(true);
-                    courseNameText.setBackground(Color.white);
-                    topicNumberText.setEnabled(true);
-                    topicNumberText.setBackground(Color.white);
-                    awardPrizeButton.setEnabled(true);
                     prizesList.setBackground(Color.white);
                 }
                 else {
-                    prizeNameText.setEnabled(false);
-                    prizeNameText.setBackground(Color.lightGray);
-                    courseNameText.setEnabled(false);
-                    courseNameText.setBackground(Color.lightGray);
-                    topicNumberText.setEnabled(false);
-                    topicNumberText.setBackground(Color.lightGray);
-                    awardPrizeButton.setEnabled(false);
                     prizesList.setBackground(Color.lightGray);
                 }
             }
@@ -129,7 +104,6 @@ public class gui {
         insertFileButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("hello");
                 sd.insertFile(fileField.getText(), sd);
             }
         });
@@ -223,16 +197,7 @@ public class gui {
                     JOptionPane.showMessageDialog(null, "There is no available data.");
                 }
                 else {
-                    JFrame prtrcd = new JFrame("Academic Records");
-                    JTextArea prtrcdta = new JTextArea(20,25);
-                    prtrcdta.setEditable(false);
-                    prtrcd.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-                    JPanel prtrcdjp = new JPanel();
-                    prtrcdjp.add(prtrcdta);
-                    prtrcd.add(prtrcdjp);
-                    prtrcd.setSize(400,400);
-                    prtrcdta.setText(sd.recordString());
-                    prtrcd.setVisible(true);
+                    sd.printRecords();
                 }
             }
         });
@@ -264,30 +229,34 @@ public class gui {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Student foundStudent = sd.findStudent(studentNumberText.getText());
-                if (studentNumberText.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "No Student ID entered, please enter a Student ID.");
-                }
-                else if (foundStudent == null) {
-                    JOptionPane.showMessageDialog(null, "No Student with this ID exists, check the ID and try again.");
+                boolean checker = foundStudent.containsResult(topicCodeText.getText());
+                if (checker == false){
+                    if (studentNumberText.getText().isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "No Student ID entered, please enter a Student ID.");
                     }
-                else if (gradeCombobox.getSelectedIndex() == 0) {
-                    JOptionPane.showMessageDialog(null, "No Grade has been selected, please select a grade.");
-                }
-                else if (topicCodeText.getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "No Topic Code entered, please select a topic code.");
-                }
-                else if (topicCodeText.getText().length() > 8) {
-                    JOptionPane.showMessageDialog(null, "This topic code has been incorrectly inputted. Please try again.");
-                }
-                else if (Integer.parseInt(markText.getText()) < 0 || Integer.parseInt(markText.getText()) > 100) {
-                    JOptionPane.showMessageDialog(null, "error");
-                }
-                else {
-                    String awardedGrade = gradeCombobox.getSelectedItem().toString();
-                    String enteredTopic = topicCodeText.getText().toUpperCase();
-                    String awardedMark = markText.getText();
-                    foundStudent.addResult("R" + ',' + foundStudent.getStudentID() + ',' + enteredTopic + ',' + awardedGrade + ',' + awardedMark);
-                }
+                    else if (foundStudent == null) {
+                        JOptionPane.showMessageDialog(null, "No Student with this ID exists, check the ID and try again.");
+                    }
+                    else if (gradeCombobox.getSelectedIndex() == 0) {
+                        JOptionPane.showMessageDialog(null, "No Grade has been selected, please select a grade.");
+                    }
+                    else if (topicCodeText.getText().isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "No Topic Code entered, please select a topic code.");
+                    }
+                    else if (topicCodeText.getText().length() > 8) {
+                        JOptionPane.showMessageDialog(null, "This topic code has been incorrectly inputted. Please try again.");
+                    }
+                    else if (Integer.parseInt(markText.getText()) < 0 || Integer.parseInt(markText.getText()) > 100) {
+                        JOptionPane.showMessageDialog(null, "error");
+                    }
+                    else {
+                        String awardedGrade = gradeCombobox.getSelectedItem().toString();
+                        String enteredTopic = topicCodeText.getText().toUpperCase();
+                        String awardedMark = markText.getText();
+                        foundStudent.addResult("R" + ',' + foundStudent.getStudentID() + ',' + enteredTopic + ',' + awardedGrade + ',' + awardedMark);
+                    }
+
+                }else JOptionPane.showMessageDialog(null, "A result for that topic already exists!");
             }
         });
 
@@ -330,7 +299,6 @@ public class gui {
 //      Award Prize Button
         awardPrizeButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Student foundStudent = sd.findStudent(studentNumberText.getText());
                 if (prizeNameText.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "No prize name entered, please enter a prize name.");
                 }

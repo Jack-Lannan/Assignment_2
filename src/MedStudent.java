@@ -43,7 +43,7 @@ public class MedStudent extends Student{
             if (i == 0)
                 concatenate = prizes.get(i);
             else if (prizes.get(i) != null) {
-            concatenate += '\n' + prizes.get(i) ;
+            concatenate += '\n' + "Prize: " + prizes.get(i) ;
             }
         }
 

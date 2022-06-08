@@ -102,6 +102,16 @@ public class Student implements Constants{
         return finList;
     }
 
+    public boolean containsResult(String code){
+        for (Result result:results) {
+            if (result != null){
+                if (result.getCode().equals(code.toUpperCase()))
+                    return true;
+            }
+        }
+        return false;
+    }
+
     public String writeResults(){
         String returner = "";
         int i = 0;

@@ -39,6 +39,8 @@ public class MedStudent extends Student{
 
     public String writeRecord () {
         String concatenate = "";
+        if (prizes.size() == 0)
+            concatenate = "\n";
         for (int i = 0; i < prizes.size(); i++) {
             if (i == 0)
                 concatenate = prizes.get(i);

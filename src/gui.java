@@ -115,6 +115,8 @@ public class gui {
                     studentNumberText.setText("");
                     familyNameText.setText("");
                     givenNameText.setText("");
+                    degreeMajorText.setText("");
+                    degreeMinorText.setText("");
                     degreeComboBox.setSelectedIndex(0);
                     addStudentButton.setText("Add Student");
                 }

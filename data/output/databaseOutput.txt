@@ -1,27 +1,3 @@
-Academic record for John Paul Smith(9800123)
+Academic record for test test(123)
 Degree: Science
-
-Academic record for Mary Jones(9821012)
-Degree: Medicine
-Prize: Chemistry Prize 1998
-
-Academic record for Burr Bill(2)
-Degree: Medicine
-Prize: Explosive surPrize 2002
-Prize: big bang
-
-Academic record for Burr Bill(3)
-Degree: Medicine
-Prize: 
-MMED0120 HD 98
-
-Academic record for John Howard(9987654)
-Degree: Arts
-Major: Politics
-Minor: Economics
-
-Academic record for Jimmny Big(9987654)
-Degree: Arts
-Major: Politics
-Minor: Economics
 

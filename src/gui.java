@@ -136,9 +136,7 @@ public class gui {
                     else if (degreeMinorText.getText().isEmpty()) {
                         JOptionPane.showMessageDialog(null, "No degree minor has been entered, please enter a minor.");
                     }
-                    else if (degreeMajorText.getText().length() > 8) {
-                        JOptionPane.showMessageDialog(null, "This Degree Major is Too Long. Please condense to 8 characters.");
-                    }
+
 
                     else {
                         if (foundStudent != null) {

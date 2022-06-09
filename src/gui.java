@@ -190,7 +190,7 @@ public class gui {
                     JPanel prtrcdjp = new JPanel();
                     prtrcdjp.add(prtrcdta);
                     prtrcd.add(prtrcdjp);
-                    prtrcd.setSize(400,400);
+                    prtrcd.setSize(400,600);
                     prtrcdta.setText(sd.recordString());
                     prtrcd.setVisible(true);
                 }
@@ -303,7 +303,7 @@ public class gui {
                 }
                 else {
                     sd.awardPrize(prizeNameText.getText(),courseNameText.getText(),Integer.parseInt(topicNumberText.getText()));
-                    JOptionPane.showMessageDialog(null, "Congratulations, This student has been awarded a prize!");
+                    JOptionPane.showMessageDialog(null, "Congratulations, the prize has been distributed!");
                 }
 
             }

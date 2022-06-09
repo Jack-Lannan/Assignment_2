@@ -197,9 +197,12 @@ public class gui {
 //      Clear Everything
         clearAllRecordsButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                sd.clearRecords();
-                System.out.println("All data has been cleared from the Database.");
-                JOptionPane.showMessageDialog(null, "All data has been cleared from the Database.");
+                int car = JOptionPane.showConfirmDialog(null, "Are you sure you want to clear this Database? This cannot be reversed.", "Delete All Records", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                if (car == JOptionPane.YES_OPTION) {
+                    sd.clearRecords();
+                    System.out.println("All data has been cleared from the Database.");
+                    JOptionPane.showMessageDialog(null, "All data has been cleared from the Database.");
+                }
             }
         });
 //      Find Student Button

@@ -59,7 +59,7 @@ public class StudentDatabase implements Constants{
      * @topicsrequired = awards students with the highest average top "topicsrequired"(number of) topics.
      */
     public void awardPrize(String name, String template, int topicsRequired){
-        Prize prize = new Prize(name+','+template + ','+topicsRequired);
+        Prize prize = new Prize("P,"+name+','+template + ','+topicsRequired);
         prize.awardPrize(this);
     }
 

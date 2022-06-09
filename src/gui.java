@@ -20,7 +20,7 @@ public class gui {
     private JTextField degreeMajorText;
     private JTextField degreeMinorText;
     private JButton findStudentButton;
-    private JList prizesList;
+    private JTextArea prizesList;
     private JButton addStudentButton;
     private JTextField prizeNameText;
     private JTextField courseNameText;
@@ -199,7 +199,16 @@ public class gui {
                     JOptionPane.showMessageDialog(null, "There is no available data.");
                 }
                 else {
-                    sd.printRecords();
+                    JFrame prtrcd = new JFrame("Academic Records");
+                    JTextArea prtrcdta = new JTextArea(20,25);
+                    prtrcdta.setEditable(false);
+                    prtrcd.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+                    JPanel prtrcdjp = new JPanel();
+                    prtrcdjp.add(prtrcdta);
+                    prtrcd.add(prtrcdjp);
+                    prtrcd.setSize(400,400);
+                    prtrcdta.setText(sd.recordString());
+                    prtrcd.setVisible(true);
                 }
             }
         });
@@ -219,6 +228,8 @@ public class gui {
                     givenNameText.setText(foundStudent.getGivenName());
                     familyNameText.setText(foundStudent.getFamilyName());
                     degreeComboBox.setSelectedItem(foundStudent.degree);
+                    prizesList.setEditable(false);
+                  //  prizesList.setText();
                 }
                 else {
                     JOptionPane.showMessageDialog(null, "No Student with this ID in database.");
@@ -301,6 +312,7 @@ public class gui {
 //      Award Prize Button
         awardPrizeButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                Student foundStudent = sd.findStudent(studentNumberText.getText());
                 if (prizeNameText.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "No prize name entered, please enter a prize name.");
                 }

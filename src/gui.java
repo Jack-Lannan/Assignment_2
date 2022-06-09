@@ -20,7 +20,6 @@ public class gui {
     private JTextField degreeMajorText;
     private JTextField degreeMinorText;
     private JButton findStudentButton;
-    private JTextArea prizesList;
     private JButton addStudentButton;
     private JTextField prizeNameText;
     private JTextField courseNameText;
@@ -88,16 +87,6 @@ public class gui {
         });
 
    //   Disables the prize panel if 'Medical' is not selected
-        degreeComboBox.addItemListener(new ItemListener() {
-            public void itemStateChanged(ItemEvent e) {
-                if (degreeComboBox.getSelectedIndex() == 3) {
-                    prizesList.setBackground(Color.white);
-                }
-                else {
-                    prizesList.setBackground(Color.lightGray);
-                }
-            }
-        });
         insertFileButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -225,8 +214,6 @@ public class gui {
                     givenNameText.setText(foundStudent.getGivenName());
                     familyNameText.setText(foundStudent.getFamilyName());
                     degreeComboBox.setSelectedItem(foundStudent.degree);
-                    prizesList.setEditable(false);
-                  //  prizesList.setText();
                 }
                 else {
                     JOptionPane.showMessageDialog(null, "No Student with this ID in database.");

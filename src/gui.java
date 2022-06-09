@@ -259,9 +259,6 @@ public class gui {
                     else if (topicCodeText.getText().length() > 8) {
                         JOptionPane.showMessageDialog(null, "This topic code has been incorrectly inputted. Please try again.");
                     }
-                    else if (Integer.parseInt(markText.getText()) < 0 || Integer.parseInt(markText.getText()) > 100) {
-                        JOptionPane.showMessageDialog(null, "error");
-                    }
                     else {
                         String awardedGrade = gradeCombobox.getSelectedItem().toString();
                         String enteredTopic = topicCodeText.getText().toUpperCase();

@@ -42,7 +42,6 @@ public class gui {
     private JLabel markLabel;
     private JPanel degreeOptionsPanel;
     private JLabel degreeMajorLabel;
-    private JLabel prizesLabel;
     private JLabel degreeMinorLabel;
     private JPanel awardPrizesPanel;
     private JLabel prizeNameLabel;

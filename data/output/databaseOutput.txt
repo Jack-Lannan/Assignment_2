@@ -1,5 +1,27 @@
-Academic record for Jeremy Bloogs(12334)
+Academic record for John Paul Smith(9800123)
+Degree: Science
+
+Academic record for Mary Jones(9821012)
+Degree: Medicine
+Prize: Chemistry Prize 1998
+
+Academic record for Burr Bill(0000002)
+Degree: Medicine
+Prize: Chemical Genius 2002
+Prize:  Another Chem lord
+
+Academic record for Riley Bill(0000003)
 Degree: Medicine
 Prize: 
+MMED0120 HD 98
 
+Academic record for John Howard(9987654)
+Degree: Arts
+Major: Politics
+Minor: Economics
+
+Academic record for Jimmny Big(9987654)
+Degree: Arts
+Major: Politics
+Minor: Economics
 

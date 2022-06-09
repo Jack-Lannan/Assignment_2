@@ -127,7 +127,7 @@ public class StudentDatabase implements Constants{
         for (Student student: db) {
             result += "Academic record for " + student.getGivenName() + " " + student.getFamilyName() + "(" + student.getStudentID() + ")" + '\n'
                     + "Degree: " + student.degree
-                    + student.writeResults() + '\n';
+                    + student.writeResults() + "\n\n";
         }
         return result;
     }

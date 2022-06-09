@@ -7,6 +7,7 @@ public class StudentDatabaseDriver {
 
 
     public static void main(String[] args) {
+        System.out.println("Enter the name of the data file you wish to insert:");
         Scanner scanner = new Scanner(System.in);
         String fileName = scanner.nextLine();
         Scanner fileScanner;

@@ -66,8 +66,6 @@ public class gui {
         degreeMajorText.setBackground(Color.lightGray);
         degreeMinorText.setEnabled(false);
         degreeMinorText.setBackground(Color.lightGray);
-        prizesList.setEnabled(false);
-        prizesList.setBackground(Color.lightGray);
         addStudentButton.setText("Add Student");
         degreeComboBox.setSelectedIndex(0);
 

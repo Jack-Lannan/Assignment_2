@@ -106,6 +106,14 @@ public class StudentDatabase implements Constants{
         }
         return medStudents;
     }
+    public ArtsStudent findArts(String id){
+        ArtsStudent artsStudent = null;
+        for (Student student:db) {
+            if (student.degree.equals("Arts") && student.getStudentID().equals(id))
+                return (ArtsStudent) student;
+        }
+        return null;
+    }
 
     // Prints every student's record.
     public String printRecords() {
@@ -139,7 +147,6 @@ public class StudentDatabase implements Constants{
     }
 
     public void writeToFile(StudentDatabase studentDatabase){
-        studentDatabase.printRecords();
         try{
             FileWriter mywriter = new FileWriter("data/output/databaseOutput.txt");
             Files.writeString(Path.of("data/output/databaseOutput.txt"),studentDatabase.printcharRecords());

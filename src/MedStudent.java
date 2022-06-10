@@ -9,9 +9,6 @@ public class MedStudent extends Student{
         String thing[] = scanner.split(",");
         this.degree = "Medicine";
         switch (thing.length){
-            case 1 :
-                this.setFamilyName(thing[0]);
-                break;
             case 4:
                 this.setStudentID(thing[1]);
                 this.setFamilyName(thing[2]);
@@ -39,6 +36,8 @@ public class MedStudent extends Student{
     //writes the students record as per the specification given
     public String writeRecord () {
         String concatenate = "";
+        if (prizes.size() == 0)
+            concatenate = "\n";
         for (int i = 0; i < prizes.size(); i++) {
             if (i == 0)
                 concatenate = prizes.get(i);

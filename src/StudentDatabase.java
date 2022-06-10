@@ -27,7 +27,6 @@ public class StudentDatabase implements Constants{
                         String[] results = nextLine.split(",");
                         studentDatabase.findStudent(results[1]).addResult(nextLine);
                     }
-//                        System.out.println(studentDatabase.findStudent(results[1]).writeRecord());
                     case 'P' -> {
                         Prize prize = new Prize(nextLine);
                         prize.awardPrize(studentDatabase);
@@ -42,7 +41,7 @@ public class StudentDatabase implements Constants{
 
     // getter for the DB
     public List<Student> getDb() {
-        return db;
+        return this.db;
     }
 
     // Add the student from input. Characterises them into Science, Medicine or Art.
@@ -76,7 +75,6 @@ public class StudentDatabase implements Constants{
         }
         return null;
     }
-
     //used to award prizes from the student database class
     //writes the changes to the output document
     public void awardPrize(String one, String two, int three){
@@ -129,7 +127,6 @@ public class StudentDatabase implements Constants{
     //clear student database of all records
     public void clearRecords(){
         db.clear();
-        this.studentCount = 0;
     }
     //writes to the output file in data/output directory
     public void writeToFile(StudentDatabase studentDatabase){

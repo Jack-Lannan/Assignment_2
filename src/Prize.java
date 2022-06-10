@@ -8,9 +8,9 @@ public class Prize implements Constants{
     //prize constructor as per the data file insertion format
     Prize(String prize){
         String[] prizes = prize.split(",");
-        name = prizes[1];
-        template = prizes[2];
-        topicsRequired = Integer.parseInt(prizes[3]);
+        this.name = prizes[1];
+        this.template = prizes[2];
+        this.topicsRequired = Integer.parseInt(prizes[3]);
     }
 
     //determines which medical student wins the prize, based on who has the highest average mark across

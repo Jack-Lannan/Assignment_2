@@ -10,6 +10,13 @@ class StudentTest {
     Student s = new Student();
 
     @Test
+    void Student() {
+        Student s2 = new Student("S,9999,test,hello");
+        assertEquals("Academic record for hello test(9999)\n" +
+                "Degree: Science\n",s2.writeRecord());
+    }
+
+    @Test
     void setStudentID() {
         s.setStudentID("newID.D");
     }
@@ -26,17 +33,20 @@ class StudentTest {
 
     @Test
     void getStudentID() {
+        s.setStudentID("newID.D");
         assertEquals("newID.D",s.getStudentID());
     }
 
     @Test
     void getFamilyName() {
-        assertEquals("jones", s.getFamilyName());
+        s.setFamilyName("Jones");
+        assertEquals("Jones", s.getFamilyName());
     }
 
 
     @Test
     void getGivenName() {
+        s.setGivenName("Mary");
         assertEquals("Mary",s.getGivenName());
     }
 
@@ -53,7 +63,12 @@ class StudentTest {
         student.addResult("R,9800123,PSYC0123,FL,42");
         int thing[] = student.getResult("PSYC,1");
        assertEquals(Arrays.stream(thing).sum(), 42);
+    }
 
+    @Test
+    void getResult2(){
+        s.addResult("R,9800123,PSYC0123,FL,42");
+        Result[] r = s.getResults();
     }
 
     @Test
@@ -70,10 +85,7 @@ class StudentTest {
         assertEquals(2,s.getTopicCount());
     }
 
-    @Test
-    void writeHeader() {
 
-    }
     @Test
     void writeRecord() {
         Student student = new Student("S,1234,bob,bob");
@@ -83,6 +95,6 @@ class StudentTest {
 
     @Test
     void testToString() {
-
+        s.toString();
     }
 }

@@ -6,17 +6,13 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 class StudentDatabaseTest {
     static StudentDatabase newStudent;
+    static StudentDatabase empty;
 
     @BeforeAll
     static void before(){
         newStudent = new StudentDatabase();
         newStudent.addStudent("S,9990099,Smith,John");
         newStudent.addStudent("M,9990199,Mary,Moo,Chemistry Prize 1998");
-    }
-
-    @Test
-    void getDB(){
-        assertEquals(5,newStudent.getDb().size());
     }
 
     @Test

@@ -39,9 +39,11 @@ public class MedStudent extends Student{
 
     public String writeRecord () {
         String concatenate = "";
+        if (prizes.size() == 0)
+            concatenate = "\n";
         for (int i = 0; i < prizes.size(); i++) {
             if (prizes.get(i) != null) {
-            concatenate += prizes.get(i) + '\n';
+                concatenate += prizes.get(i) + '\n';
             }
         }
 
@@ -49,5 +51,5 @@ public class MedStudent extends Student{
                 + "Degree: " + this.degree + '\n'
                 + "Prize: " + concatenate
                 + this.writeResults();
-        }
+    }
     }

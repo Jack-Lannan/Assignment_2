@@ -73,7 +73,7 @@ class StudentDatabaseTest {
                 "Academic record for Moo Mary(9990199)\n" +
                 "Degree: Medicine\n" +
                 "Prize: Chemistry Prize 1998\n" +
-                "Theo\n" +
+                "Prize:  Theo\n" +
                 "COMP1001 DN 77\n" +
                 "MEDD0119 HD 86\n" +
                 "MEDD0139 CR 75\n" +

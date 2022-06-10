@@ -1,7 +1,5 @@
-Academic record for John Smith(9990099)
-Degree: Science
-
-Academic record for Moo Mary(9990199)
+Academic record for joff jim(1234567)
 Degree: Medicine
-Prize: Chemistry Prize 1998
+Prize: 
+
 

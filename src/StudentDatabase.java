@@ -47,7 +47,7 @@ public class StudentDatabase implements Constants{
     public void addResult(String results){
         String resultSection[]  = results.split(",");
         for (int i = 0; i< db.size(); i++){
-            if (db.get(i).getStudentID() == resultSection[1]){
+            if (db.get(i).getStudentID().equals(resultSection[1])){
                 db.get(i).addResult(results);
             }
         }
@@ -59,7 +59,7 @@ public class StudentDatabase implements Constants{
      * @topicsrequired = awards students with the highest average top "topicsrequired"(number of) topics.
      */
     public void awardPrize(String name, String template, int topicsRequired){
-        Prize prize = new Prize(name+','+template + ','+topicsRequired);
+        Prize prize = new Prize("P,"+name+','+template + ','+topicsRequired);
         prize.awardPrize(this);
     }
 

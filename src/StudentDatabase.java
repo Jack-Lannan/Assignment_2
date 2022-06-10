@@ -124,10 +124,8 @@ public class StudentDatabase implements Constants{
     }
     public String recordString(){
         String result = "";
-        for (Student student: db) {
-            result += "Academic record for " + student.getGivenName() + " " + student.getFamilyName() + "(" + student.getStudentID() + ")" + '\n'
-                    + "Degree: " + student.degree
-                    + student.writeResults() + '\n';
+        for (int i = 0; i< db.size(); i++) {
+            result += db.get(i).writeRecord() + '\n';
         }
         return result;
     }

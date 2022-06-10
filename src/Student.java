@@ -24,6 +24,10 @@ public class Student implements Constants{
         this.givenName = givenName;
     }
 
+    private int topicCount = 0;
+    private Map<String,Student> studentMap = new TreeMap<>();
+    //constructor for the student class as based on the text file insertion format
+  
     Student(String scanner){
         String thing[] = scanner.split(",");
         switch (thing.length){
@@ -61,7 +65,7 @@ public class Student implements Constants{
     public String getGivenName(String familyname) {
         return studentMap.get(familyname).givenName;
     }
-
+    //inserts results into student results list
     public void addResult(String scanner) {
         Result result = new Result(scanner);
         for (int i = 0; i < 24; i++) {
@@ -72,10 +76,11 @@ public class Student implements Constants{
             }
         }
     }
+    //returns all results of the student
     public Result[] getResults() {
         return results;
     }
-
+    //returns an integer array for the given amount of marks required to determine who gets awarded the prize
     public int[] getResult(String degree){
         String split[] = degree.split(",");
         int finList[] = new int[Integer.parseInt(split[1])];
@@ -100,7 +105,17 @@ public class Student implements Constants{
         }
         return finList;
     }
-
+    //usedd to find results that follow the topic code
+    public boolean containsResult(String code){
+        for (Result result:results) {
+            if (result != null){
+                if (result.getCode().equals(code.toUpperCase()))
+                    return true;
+            }
+        }
+        return false;
+    }
+    //concatenates all the results information to a string which is returned
     public String writeResults(){
         String returner = "";
         int i = 0;
@@ -110,15 +125,15 @@ public class Student implements Constants{
         }
         return returner;
     }
-
+    //return topic count that student has completed
     public int getTopicCount() {
         return topicCount;
     }
-
+    //writing the student record to the specifications given
     public String writeRecord(){
         return "Academic record for " + this.getGivenName() + " " + this.getFamilyName() + "(" + this.getStudentID() + ")" + '\n'
-                + "Degree: " + this.degree + '\n'
-                + this.writeResults();
+                + "Degree: " + this.degree
+                + this.writeResults() + "\n";
     }
 
     @Override

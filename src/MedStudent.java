@@ -4,14 +4,11 @@ import java.util.List;
 public class MedStudent extends Student{
     List<String> prizes = new ArrayList<>();
     int prizeCount;
-
+    //Medical student constructor as per the data file insertion format
     MedStudent(String scanner){
         String thing[] = scanner.split(",");
         this.degree = "Medicine";
         switch (thing.length){
-            case 1 :
-                this.setFamilyName(thing[0]);
-                break;
             case 4:
                 this.setStudentID(thing[1]);
                 this.setFamilyName(thing[2]);
@@ -36,20 +33,22 @@ public class MedStudent extends Student{
     public List<String> getPrizes() {
         return prizes;
     }
-
+    //writes the students record as per the specification given
     public String writeRecord () {
         String concatenate = "";
         if (prizes.size() == 0)
             concatenate = "\n";
         for (int i = 0; i < prizes.size(); i++) {
-            if (prizes.get(i) != null) {
-                concatenate += prizes.get(i) + '\n';
+            if (i == 0)
+                concatenate = prizes.get(i);
+            else if (prizes.get(i) != null) {
+            concatenate += '\n' + "Prize: " + prizes.get(i) ;
             }
         }
 
         return "Academic record for " + this.getGivenName() + " " + this.getFamilyName() + "(" + this.getStudentID() + ")" + '\n'
                 + "Degree: " + this.degree + '\n'
                 + "Prize: " + concatenate
-                + this.writeResults();
-    }
+                + this.writeResults() + '\n';
+        }
     }

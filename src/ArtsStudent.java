@@ -2,9 +2,8 @@ public class ArtsStudent extends Student{
 
     private String major;
     private String minor;
-
+    //Arts student constructor as per the data file insertion format
     ArtsStudent(String scanner){
-        ArtsStudent student = new ArtsStudent();
         String thing[] = scanner.split(",");
         this.degree = "Arts";
         switch (thing.length){
@@ -32,6 +31,7 @@ public class ArtsStudent extends Student{
     public ArtsStudent() {
 
     }
+     //returns the students information to be printed to the terminal or shown in the gui
     public String writeRecord(){
         return "Academic record for " + this.getGivenName() + " " + this.getFamilyName() + "(" + this.getStudentID() + ")" + '\n'
                 + "Degree: " + this.degree + '\n'

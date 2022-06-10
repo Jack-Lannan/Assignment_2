@@ -63,7 +63,12 @@ class StudentTest {
         student.addResult("R,9800123,PSYC0123,FL,42");
         int thing[] = student.getResult("PSYC,1");
        assertEquals(Arrays.stream(thing).sum(), 42);
+    }
 
+    @Test
+    void getResult2(){
+        s.addResult("R,9800123,PSYC0123,FL,42");
+        Result[] r = s.getResults();
     }
 
     @Test
@@ -90,6 +95,6 @@ class StudentTest {
 
     @Test
     void testToString() {
-
+        s.toString();
     }
 }

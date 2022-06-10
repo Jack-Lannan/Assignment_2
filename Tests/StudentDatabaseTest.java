@@ -16,7 +16,7 @@ class StudentDatabaseTest {
 
     @Test
     void getDB(){
-        assertEquals("2",newStudent.getDb().toString());
+        assertEquals(5,newStudent.getDb().size());
     }
 
     @Test
@@ -65,6 +65,8 @@ class StudentDatabaseTest {
         newStudent.addStudent("S,9990299,Maaa,Mooo");
         newStudent.getMeds();
     }
+
+
 
     @Test
     void printcharRecords(){

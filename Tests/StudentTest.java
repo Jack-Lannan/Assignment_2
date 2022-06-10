@@ -10,6 +10,13 @@ class StudentTest {
     Student s = new Student();
 
     @Test
+    void Student() {
+        Student s2 = new Student("S,9999,test,hello");
+        assertEquals("Academic record for hello test(9999)\n" +
+                "Degree: Science\n",s2.writeRecord());
+    }
+
+    @Test
     void setStudentID() {
         s.setStudentID("newID.D");
     }

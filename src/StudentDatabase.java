@@ -7,12 +7,9 @@ public class StudentDatabase implements Constants{
     StudentDatabase(){
     }
 
-    StudentDatabase(Integer value){
-    }
-
     // getter for the DB
     public List<Student> getDb() {
-        return db;
+        return this.db;
     }
 
     // Add the student from input. Characterises them into Science, Medicine or Art.

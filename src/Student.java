@@ -8,6 +8,8 @@ public class Student implements Constants{
     private String familyName;
     private String givenName;
     protected String degree;
+    private int topicCount = 0;
+    private Map<String,Student> studentMap = new TreeMap<>();
     private Result results[] = new Result[NUMBER_OF_TOPICS];
 
     public void setStudentID(String studentID) {
@@ -21,9 +23,6 @@ public class Student implements Constants{
     public void setGivenName(String givenName) {
         this.givenName = givenName;
     }
-
-    private int topicCount = 0;
-    private Map<String,Student> studentMap = new TreeMap<>();
 
     Student(String scanner){
         String thing[] = scanner.split(",");

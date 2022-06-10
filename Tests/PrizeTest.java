@@ -21,17 +21,7 @@ class PrizeTest {
     }
 
     @Test
-    void testPrize(){
-
-        new Prize("P,ROH,MEDD,1").awardPrize(newStudent);
-        newStudent.printRecords();
-
-
-
-    }
-
-    @Test
-    void testawardPrize() {
+    void testPrize() {
 
 
 

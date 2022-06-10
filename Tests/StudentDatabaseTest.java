@@ -37,15 +37,15 @@ class StudentDatabaseTest {
         newStudent.printRecords();
     }
 
-   @Test
+  /* @Test
     void awardPrize() {
         newStudent.awardPrize("Theo", "MEDD", 2);
-    }
+    }*/
 
     @Test
     void printRecords() {
         newStudent.addStudent("M,1234567,jim,joff");
-        newStudent.addResult("R,1234567,MEDD0139,HD,100");
+        newStudent.addResult("E,1234567,MEDD0139,HD,100");
         newStudent.printRecords();
     }
 

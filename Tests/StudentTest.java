@@ -26,17 +26,20 @@ class StudentTest {
 
     @Test
     void getStudentID() {
+        s.setStudentID("newID.D");
         assertEquals("newID.D",s.getStudentID());
     }
 
     @Test
     void getFamilyName() {
-        assertEquals("jones", s.getFamilyName());
+        s.setFamilyName("Jones");
+        assertEquals("Jones", s.getFamilyName());
     }
 
 
     @Test
     void getGivenName() {
+        s.setGivenName("Mary");
         assertEquals("Mary",s.getGivenName());
     }
 

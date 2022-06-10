@@ -4,7 +4,7 @@ import java.util.List;
 public class MedStudent extends Student{
     List<String> prizes = new ArrayList<>();
     int prizeCount;
-
+    //Medical student constructor as per the data file insertion format
     MedStudent(String scanner){
         String thing[] = scanner.split(",");
         this.degree = "Medicine";
@@ -36,7 +36,7 @@ public class MedStudent extends Student{
     public List<String> getPrizes() {
         return prizes;
     }
-
+    //writes the students record as per the specification given
     public String writeRecord () {
         String concatenate = "";
         for (int i = 0; i < prizes.size(); i++) {

@@ -5,7 +5,7 @@ public class Prize implements Constants{
     private String name;
     private String template;
     private int topicsRequired;
-
+    //prize constructor as per the data file insertion format
     Prize(String prize){
         String[] prizes = prize.split(",");
         name = prizes[1];
@@ -13,6 +13,8 @@ public class Prize implements Constants{
         topicsRequired = Integer.parseInt(prizes[3]);
     }
 
+    //determines which medical student wins the prize, based on who has the highest average mark across
+    //their given topics
     public void awardPrize(StudentDatabase studentDatabase){
         MedStudent medStudent = null;
         LinkedList<MedStudent> meds = studentDatabase.getMeds();

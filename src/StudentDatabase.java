@@ -5,7 +5,7 @@ import java.util.*;
 
 public class StudentDatabase implements Constants{
 
-    private List<Student> db = new LinkedList<>();
+    private final List<Student> db = new LinkedList<>();
     private int studentCount = NUMBER_OF_STUDENTS;
 
     StudentDatabase(){
@@ -17,25 +17,21 @@ public class StudentDatabase implements Constants{
             fileScanner = new Scanner(new FileInputStream("data" + File.separator + filename));
             while(fileScanner.hasNext()){
                 String nextLine = fileScanner.nextLine();
-                switch (nextLine.charAt(0)){
-                    case 'S':
-                    case 'M':
-                    case 'A':
-                        studentDatabase.addStudent(nextLine);
-                        String student[] = nextLine.split(",");
-                        break;
-                    case 'R':
+                switch (nextLine.charAt(0)) {
+                    case 'S', 'M', 'A' -> studentDatabase.addStudent(nextLine);
+                    case 'R' -> {
                         //need the database to be working for this stage, access the student by their id
                         //add the given result to their corresponding result array that they would have
                         //database.findStudent(String their id)
                         //database.addResult(String of the given result field)
-                        String results[] = nextLine.split(",");
+                        String[] results = nextLine.split(",");
                         studentDatabase.findStudent(results[1]).addResult(nextLine);
+                    }
 //                        System.out.println(studentDatabase.findStudent(results[1]).writeRecord());
-                        break;
-                    case 'P':
+                    case 'P' -> {
                         Prize prize = new Prize(nextLine);
                         prize.awardPrize(studentDatabase);
+                    }
                 }
             }
             studentDatabase.printRecords();
@@ -54,18 +50,18 @@ public class StudentDatabase implements Constants{
         if (db.size() < studentCount){
 
             switch (student.charAt(0)) {
-                case 'S':
+                case 'S' -> {
                     db.add(new Student(student));
                     studentCount++;
-                    break;
-                case 'M':
+                }
+                case 'M' -> {
                     db.add(new MedStudent(student));
                     studentCount++;
-                    break;
-                case 'A':
+                }
+                case 'A' -> {
                     db.add(new ArtsStudent(student));
                     studentCount++;
-                    break;
+                }
             }
         }
         writeToFile(this);
@@ -73,23 +69,16 @@ public class StudentDatabase implements Constants{
 
     // Finds student using StudentID.
     public Student findStudent(String student){
-        for (int i = 0; i < db.size(); i++){
-            if ( db.get(i).getStudentID() != null && db.get(i).getStudentID().equals(student)){
-                return db.get(i);
+        for (Student value : db) {
+            if (value.getStudentID() != null && value.getStudentID().equals(student)) {
+                return value;
             }
         }
         return null;
     }
-    public void addResult(String results){
-        String resultSection[]  = results.split(",");
-        for (int i = 0; i< db.size(); i++){
-            if (db.get(i).getStudentID() == resultSection[1]){
-                db.get(i).addResult(results);
-            }
-        }
-        writeToFile(this);
-    }
 
+    //used to award prizes from the student database class
+    //writes the changes to the output document
     public void awardPrize(String one, String two, int three){
         Prize prize = new Prize("P, " + one+','+two + ','+three);
         prize.awardPrize(this);
@@ -100,14 +89,15 @@ public class StudentDatabase implements Constants{
     public LinkedList<MedStudent> getMeds(){
         LinkedList<MedStudent> medStudents = new LinkedList<>();
         for (Student student:db) {
-            if (student.degree == "Medicine") {
+            if (student.degree.equals("Medicine")) {
                 medStudents.add((MedStudent)student);
             }
         }
         return medStudents;
     }
+
+    //return all Arts students in the database
     public ArtsStudent findArts(String id){
-        ArtsStudent artsStudent = null;
         for (Student student:db) {
             if (student.degree.equals("Arts") && student.getStudentID().equals(id))
                 return (ArtsStudent) student;
@@ -116,34 +106,32 @@ public class StudentDatabase implements Constants{
     }
 
     // Prints every student's record.
-    public String printRecords() {
-        for (int i = 0; i < db.size(); i++) {
-            System.out.println(db.get(i).writeRecord());
+    public void printRecords() {
+        for (Student student : db) {
+            System.out.println(student.writeRecord());
         }
-        return "";
     }
     public String recordString(){
-        String result = "";
-        for (int i = 0; i< db.size(); i++) {
-            result += db.get(i).writeRecord() + '\n';
+        StringBuilder result = new StringBuilder();
+        for (Student student : db) {
+            result.append(student.writeRecord()).append('\n');
         }
-        return result;
+        return result.toString();
     }
-
     public String printcharRecords(){
-        String thing = "";
-        for (int i = 0; i< db.size();i++){
-            thing += db.get(i).writeRecord();
-            thing +="\n";
+        StringBuilder thing = new StringBuilder();
+        for (Student student : db) {
+            thing.append(student.writeRecord());
+            thing.append("\n");
         }
-        return thing;
+        return thing.toString();
     }
-
+    //clear student database of all records
     public void clearRecords(){
         db.clear();
         this.studentCount = 0;
     }
-
+    //writes to the output file in data/output directory
     public void writeToFile(StudentDatabase studentDatabase){
         try{
             FileWriter mywriter = new FileWriter("data/output/databaseOutput.txt");

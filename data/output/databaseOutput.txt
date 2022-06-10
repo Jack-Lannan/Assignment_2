@@ -1,46 +1,7 @@
-Academic record for John Paul Smith(9800123)
+Academic record for John Smith(9990099)
 Degree: Science
-COMP1000 PS 55
-COMP1001 DN 77
-HIST1234 HD
-PSYC0123 FL 42
 
-Academic record for Mary Jones(9821012)
+Academic record for Moo Mary(9990199)
 Degree: Medicine
 Prize: Chemistry Prize 1998
-Prize: Medical Prize 3
-BIOL1000 HD 89
-CHEM1001 HD 92
-COMP1000 DN 75
-PHYS1010 HD 93
-MMED1904 HD 93
-MMED1904 HD 93
-MMED1905 HD 93
-
-Academic record for Burr Bill(0000002)
-Degree: Medicine
-Prize: Chemical Genius 2002
-Prize:  Another Chem lord
-Prize: Medical Prize 1
-Prize: Historical Prize 3 Prize
-HIST0010 HD 95
-MMED0120 HD 98
-
-Academic record for Riley Bill(0000003)
-Degree: Medicine
-Prize: 
-MMED0120 HD 98
-
-Academic record for John Howard(9987654)
-Degree: Arts
-Major: Politics
-Minor: Economics
-
-Academic record for Jimmny Big(9987654)
-Degree: Arts
-Major: Politics
-Minor: Economics
-
-Academic record for jonnn jon(1234567)
-Degree: Science
 

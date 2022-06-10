@@ -116,6 +116,15 @@ public class StudentDatabase implements Constants{
         }
         return result.toString();
     }
+//inserts result from database to the allocated Student
+    public void addResult(String results){
+        String resultSection[]  = results.split(",");
+        for (int i = 0; i< db.size(); i++){
+            if (db.get(i).getStudentID().equals(resultSection[1])){
+                db.get(i).addResult(results);
+            }
+        }
+    }
     public String printcharRecords(){
         StringBuilder thing = new StringBuilder();
         for (Student student : db) {

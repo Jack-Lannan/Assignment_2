@@ -4,12 +4,12 @@ import java.io.FileNotFoundException;
 import java.util.*;
 
 public class Student implements Constants{
+    private int topicCount = 0;
+    private Map<String,Student> studentMap = new TreeMap<>();
     private String studentID;
     private String familyName;
     private String givenName;
     protected String degree;
-    private int topicCount = 0;
-    private Map<String,Student> studentMap = new TreeMap<>();
     private Result results[] = new Result[NUMBER_OF_TOPICS];
 
     public void setStudentID(String studentID) {
@@ -24,8 +24,7 @@ public class Student implements Constants{
         this.givenName = givenName;
     }
 
-    private int topicCount = 0;
-    private Map<String,Student> studentMap = new TreeMap<>();
+
     //constructor for the student class as based on the text file insertion format
   
     Student(String scanner){
